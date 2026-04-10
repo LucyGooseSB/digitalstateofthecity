@@ -1,0 +1,39 @@
+# Local settings (machine-specific — template is the canonical version)
+.claude/settings.local.json
+
+# Temporary scratch work
+.claude/temp/
+
+# Voice inbox (processed memos are transient)
+.claude/voice-inbox/*.txt
+.claude/voice-inbox/*.md
+!.claude/voice-inbox/.gitkeep
+
+# Generated board (derived from item files)
+.claude/work/BOARD.md
+
+# Pattern session files (raw telemetry — insights are committed)
+.claude/patterns/sessions/*.jsonl
+!.claude/patterns/sessions/.gitkeep
+
+# Generated patterns summary (derived from insights)
+.claude/patterns/PATTERNS.md
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Node (for statusline.js)
+node_modules/
+
+# Environment
+.env
+.env.local
