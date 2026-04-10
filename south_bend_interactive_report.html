@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>City of South Bend - Digital Services - Q2 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:100vh;display:flex;flex-direction:column;user-select:none;}
+
+/* DESKTOP */
+#desktop{flex:1;position:relative;overflow:hidden;background:linear-gradient(160deg,#001840 0%,#002868 45%,#001230 100%);}
+#desktop-bg{position:absolute;inset:0;pointer-events:none;}
+.bg-wave{position:absolute;opacity:.12;}
+.bg-wave-1{right:0;top:0;height:100%;}
+.bg-wave-2{right:120px;top:5%;height:85%;opacity:.07;}
+.bg-seal{position:absolute;right:48px;bottom:60px;width:140px;opacity:.06;}
+
+/* DESKTOP ICONS */
+.icon{position:absolute;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:6px;border-radius:3px;width:72px;}
+.icon:hover{background:rgba(255,255,255,.15);}
+.icon-img{font-size:32px;line-height:1;}
+.icon-label{font-size:10px;color:#fff;text-align:center;text-shadow:1px 1px 2px rgba(0,0,0,.8);line-height:1.2;}
+
+/* WINDOWS */
+.win{position:absolute;display:flex;flex-direction:column;border:1px solid #0a3080;box-shadow:2px 2px 8px rgba(0,0,0,.5);min-width:320px;min-height:200px;border-radius:4px 4px 0 0;overflow:hidden;}
+.win.focused .win-titlebar{background:linear-gradient(180deg,#4b9cf5 0%,#1963d0 8%,#1460ca 40%,#1255b8 88%,#0f4aaa 100%);}
+.win:not(.focused) .win-titlebar{background:linear-gradient(180deg,#7fa8d8 0%,#5882b4 100%);}
+.win-titlebar{height:26px;display:flex;align-items:center;padding:0 4px;cursor:move;flex-shrink:0;}
+.win-icon{font-size:14px;margin-right:6px;}
+.win-title{flex:1;font-size:11px;font-weight:bold;color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.4);}
+.win-btns{display:flex;gap:2px;}
+.win-btn{width:21px;height:19px;border-radius:3px;border:1px solid rgba(255,255,255,.3);font-size:11px;font-weight:bold;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.1));}
+.win-btn:hover{background:rgba(255,255,255,.4);}
+.win-btn.close{background:linear-gradient(180deg,#f05050,#c02020);}
+.win-btn.close:hover{background:linear-gradient(180deg,#ff6060,#e03030);}
+.win-menubar{background:#ECE9D8;border-bottom:1px solid #AAA;padding:1px 4px;display:flex;gap:0;flex-shrink:0;}
+.win-menu{padding:2px 8px;font-size:11px;cursor:pointer;}
+.win-menu:hover{background:#316AC5;color:#fff;}
+.win-body{flex:1;overflow:auto;background:#ECE9D8;}
+
+/* NOTEPAD */
+.notepad-body{background:#fff;height:100%;padding:8px;font-family:'Courier New',monospace;font-size:11px;line-height:1.7;color:#000;outline:none;white-space:pre-wrap;}
+
+/* EXCEL STYLE */
+.xls-toolbar{background:#ECE9D8;border-bottom:1px solid #AAA;padding:2px 6px;display:flex;gap:4px;flex-shrink:0;}
+.xls-btn{background:linear-gradient(180deg,#fff,#D4D0C8);border:1px outset #999;padding:1px 8px;font-size:11px;cursor:pointer;}
+.xls-btn:active{border:1px inset #999;}
+.xls-body{overflow:auto;}
+.xls-table{border-collapse:collapse;width:100%;font-size:11px;}
+.xls-table th{background:#D4D0C8;border:1px solid #999;padding:3px 8px;text-align:center;font-size:10px;}
+.xls-table td{border:1px solid #D0D0D0;padding:3px 8px;background:#fff;}
+.xls-table tr:nth-child(even) td{background:#F0F0F8;}
+.xls-table td.num{font-weight:bold;color:#002868;font-size:14px;text-align:right;}
+.xls-table td.gold{font-weight:bold;color:#C49B00;font-size:14px;text-align:right;}
+.xls-table td.dim{color:#AAAAAA;font-size:14px;text-align:right;}
+.xls-table th.row-hdr{background:#C8C8C8;width:28px;font-size:10px;color:#333;}
+.row-num{background:#D4D0C8;border:1px solid #999;padding:3px 4px;text-align:center;font-size:10px;color:#333;}
+
+/* PPT STYLE */
+.ppt-toolbar{background:#ECE9D8;border-bottom:1px solid #AAA;padding:2px 6px;flex-shrink:0;}
+.ppt-body{padding:16px;overflow:auto;}
+.ppt-slide{background:#fff;border:1px solid #CCC;padding:20px;margin-bottom:12px;box-shadow:2px 2px 4px rgba(0,0,0,.1);}
+.ppt-slide-title{font-family:'Merriweather',serif;font-size:15px;font-weight:900;color:#002868;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #F5C82C;}
+.ppt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ppt-col{padding:10px;font-size:11px;line-height:1.6;}
+.ppt-col.before{background:#F5F5F5;border-left:3px solid #AAAAAA;}
+.ppt-col.after{background:#EEF8EE;border-left:3px solid #002868;}
+.ppt-col-hdr{font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
+.ppt-col.before .ppt-col-hdr{color:#888;}
+.ppt-col.after .ppt-col-hdr{color:#002868;}
+.ppt-tag{display:inline-block;background:#002868;color:#F5C82C;font-size:9px;font-weight:bold;padding:1px 6px;margin-bottom:6px;}
+.progress-xp{border:2px inset #888;height:16px;background:#fff;margin:6px 0;}
+.progress-xp-fill{height:100%;background:linear-gradient(180deg,#6EA8E8,#2060CC);transition:width 1.5s ease;}
+.ppt-felt{font-size:9px;color:#888;font-style:italic;margin-top:6px;padding-top:4px;border-top:1px dashed #CCC;}
+
+/* TASKBAR */
+#taskbar{height:32px;background:linear-gradient(180deg,#245EDC 0%,#1951B8 40%,#1748A8 100%);border-top:1px solid #0a3080;display:flex;align-items:center;gap:2px;padding:0 2px;flex-shrink:0;}
+#start-btn{background:linear-gradient(180deg,#5EA832 0%,#3A8020 60%,#2A6010 100%);border:1px solid #1A4010;border-radius:3px;color:#fff;font-family:'Lato',sans-serif;font-weight:900;font-size:12px;padding:2px 12px 2px 8px;cursor:pointer;display:flex;align-items:center;gap:4px;height:26px;letter-spacing:.02em;text-shadow:1px 1px 1px rgba(0,0,0,.4);}
+#start-btn:hover{filter:brightness(1.1);}
+.start-star{width:18px;}
+.taskbar-divider{width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 4px;}
+.tb-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:2px;color:#fff;font-size:10px;padding:2px 8px;cursor:pointer;height:22px;display:flex;align-items:center;gap:5px;max-width:140px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.tb-btn.active{background:rgba(0,0,0,.2);border:1px inset rgba(0,0,0,.3);}
+.tb-btn:hover{background:rgba(255,255,255,.2);}
+.tb-icon{font-size:13px;}
+#tray{margin-left:auto;display:flex;align-items:center;gap:6px;background:rgba(0,0,50,.3);border-left:1px solid rgba(255,255,255,.15);padding:0 8px;height:100%;}
+#clock{color:#fff;font-size:11px;text-align:right;cursor:default;}
+
+/* CLIPPY */
+#clippy{position:absolute;bottom:48px;right:16px;display:flex;flex-direction:column;align-items:flex-end;gap:4px;z-index:9999;opacity:0;transition:opacity .4s;}
+#clippy.visible{opacity:1;}
+.clippy-bubble{background:#FFFFC8;border:1px solid #C8A000;border-radius:8px 8px 0 8px;padding:8px 10px;max-width:200px;font-size:11px;line-height:1.5;color:#333;box-shadow:2px 2px 4px rgba(0,0,0,.2);}
+.clippy-bubble b{color:#002868;}
+.clippy-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:6px;border-top:1px dashed #CCC;padding-top:4px;}
+.clippy-btn{font-size:9px;color:#0000CC;cursor:pointer;text-decoration:underline;background:none;border:none;padding:0;font-family:Tahoma,Arial,sans-serif;}
+.clippy-btn:hover{color:#CC0000;}
+.clippy-mascot{width:52px;height:52px;background:#002868;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;box-shadow:2px 2px 6px rgba(0,0,0,.4);border:2px solid #F5C82C;}
+.clippy-wiggle{animation:wiggle .4s ease-in-out;}
+@keyframes wiggle{0%,100%{transform:rotate(0deg);}25%{transform:rotate(-10deg);}75%{transform:rotate(10deg));}}
+/* START MENU */
+#start-menu{display:none;position:absolute;bottom:32px;left:0;width:220px;background:linear-gradient(180deg,#1A58CC,#0A3A9A);border:1px solid #0a2060;box-shadow:3px -3px 8px rgba(0,0,0,.5);z-index:9999;}
+#start-menu.open{display:block;}
+.sm-header{background:linear-gradient(90deg,#3070E0,#1A50CC);padding:10px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #4080E8;}
+.sm-header-text{color:#fff;font-size:12px;font-weight:bold;line-height:1.3;}
+.sm-header-sub{color:rgba(255,255,255,.6);font-size:10px;}
+.sm-item{padding:6px 14px;font-size:11px;color:#fff;cursor:pointer;display:flex;align-items:center;gap:8px;}
+.sm-item:hover{background:rgba(255,255,255,.15);}
+.sm-item .sm-ico{font-size:16px;width:20px;text-align:center;}
+.sm-divider{height:1px;background:rgba(255,255,255,.15);margin:4px 0;}
+.sm-footer{background:rgba(0,0,0,.2);padding:6px 14px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid rgba(255,255,255,.1);}
+.sm-footer-btn{background:linear-gradient(180deg,#5080D0,#2050A8);border:1px solid #8AAAE0;color:#fff;font-size:10px;padding:2px 10px;cursor:pointer;border-radius:2px;}
+.sm-footer-btn:hover{filter:brightness(1.2);}
+
+/* BLINK */
+.blink{animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:16px;height:16px;}
+::-webkit-scrollbar-track{background:#D4D0C8;}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#E8E4DC,#B8B4AA);border:1px solid #888;}
+::-webkit-scrollbar-button{background:#D4D0C8;border:1px solid #888;height:16px;}
+</style>
+</head>
+<body>
+
+<div id="desktop">
+  <div id="desktop-bg">
+    <img class="bg-wave bg-wave-1" src="https://www.figma.com/api/mcp/asset/b1a6ae32-4667-40e6-a4f3-096fbf2fc9ba" alt="">
+    <img class="bg-wave bg-wave-2" src="https://www.figma.com/api/mcp/asset/d59d89b2-5e13-4d09-85d3-f7627640e76c" alt="">
+    <img class="bg-seal" src="https://www.figma.com/api/mcp/asset/13842735-ac83-4e2d-8d68-96fd8ce1ea5d" alt="">
+  </div>
+
+  <!-- DESKTOP ICONS -->
+  <div class="icon" style="left:16px;top:16px;" ondblclick="openWin('win-welcome')">
+    <div class="icon-img">📄</div>
+    <div class="icon-label">Welcome.txt</div>
+  </div>
+  <div class="icon" style="left:16px;top:100px;" ondblclick="openWin('win-services')">
+    <div class="icon-img">📊</div>
+    <div class="icon-label">Services Overview.doc</div>
+  </div>
+  <div class="icon" style="left:16px;top:184px;" ondblclick="openWin('win-stats')">
+    <div class="icon-img">📈</div>
+    <div class="icon-label">City Stats Q2 2026.xls</div>
+  </div>
+  <div class="icon" style="left:16px;top:268px;" ondblclick="openWin('win-changes')">
+    <div class="icon-img">📋</div>
+    <div class="icon-label">What Changed.ppt</div>
+  </div>
+  <div class="icon" style="left:16px;top:352px;" ondblclick="openWin('win-readme')">
+    <div class="icon-img">❓</div>
+    <div class="icon-label">ReadMe_First.txt</div>
+  </div>
+
+  <!-- WINDOW: WELCOME -->
+  <div class="win focused" id="win-welcome" style="left:100px;top:40px;width:480px;height:300px;z-index:10;">
+    <div class="win-titlebar" onmousedown="startDrag(event,'win-welcome')">
+      <span class="win-icon">📄</span>
+      <span class="win-title">Welcome.txt - City Notepad</span>
+      <div class="win-btns">
+        <div class="win-btn" onclick="minimizeWin('win-welcome')">−</div>
+        <div class="win-btn">□</div>
+        <div class="win-btn close" onclick="closeWin('win-welcome')">✕</div>
+      </div>
+    </div>
+    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">Format</span><span class="win-menu">View</span><span class="win-menu">Help</span></div>
+    <div class="win-body">
+      <div class="notepad-body" contenteditable="true">CITY OF SOUTH BEND :: INNOVATION & TECHNOLOGY
+Digital Services — State of the City Report
+Q2 2026
+================================================
+
+Welcome.
+
+This desktop contains the Q2 2026 report for
+the Digital Services team within the City of
+South Bend's Innovation & Technology department.
+
+Double-click any file on the desktop to open it.
+
+FILES ON THIS DESKTOP:
+  📊 Services Overview.doc  — What we do
+  📈 City Stats Q2 2026.xls — By the numbers
+  📋 What Changed.ppt       — Before & after
+
+================================================
+DEPARTMENT: Innovation & Technology
+REPORT PERIOD: Q2 2026
+WEBSITE: southbendindiana.gov
+================================================
+
+NOTE: This document last saved 6/30/2026 11:58 PM
+      File size: 2 KB
+
+<span class="blink">_</span></div>
+    </div>
+  </div>
+
+  <!-- WINDOW: SERVICES -->
+  <div class="win" id="win-services" style="left:160px;top:80px;width:600px;height:380px;z-index:8;display:none;">
+    <div class="win-titlebar" onmousedown="startDrag(event,'win-services')">
+      <span class="win-icon">📊</span>
+      <span class="win-title">Services Overview.doc - City Docs</span>
+      <div class="win-btns">
+        <div class="win-btn" onclick="minimizeWin('win-services')">−</div>
+        <div class="win-btn">□</div>
+        <div class="win-btn close" onclick="closeWin('win-services')">✕</div>
+      </div>
+    </div>
+    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Insert</span><span class="win-menu">Format</span><span class="win-menu">Tools</span><span class="win-menu">Table</span><span class="win-menu">Help</span></div>
+    <div class="xls-toolbar">
+      <button class="xls-btn">Normal ▾</button>
+      <button class="xls-btn">Merriweather ▾</button>
+      <button class="xls-btn">12 ▾</button>
+      <button class="xls-btn"><b>B</b></button>
+      <button class="xls-btn"><i>I</i></button>
+      <button class="xls-btn"><u>U</u></button>
+    </div>
+    <div class="win-body">
+      <div style="padding:16px;background:#fff;">
+        <div style="font-family:'Merriweather',serif;font-size:18px;font-weight:900;color:#002868;margin-bottom:4px;">Digital Services — Seven Services, One Team</div>
+        <div style="font-size:10px;color:#888;margin-bottom:12px;border-bottom:1px solid #DDD;padding-bottom:8px;">City of South Bend · Innovation & Technology · Q2 2026</div>
+        <table class="xls-table">
+          <tr><th>Area</th><th>Service</th><th>Our Promise</th></tr>
+          <tr><td style="background:#E8ECF8;"><span style="background:#002868;color:#F5C82C;font-size:9px;font-weight:bold;padding:1px 4px;">RESIDENT</span></td><td><b>City Digital Experience & Content Mgmt</b></td><td style="color:#555;font-style:italic;">Residents find accurate, accessible info and complete tasks through connected city digital channels.</td></tr>
+          <tr><td style="background:#E8ECF8;"><span style="background:#002868;color:#F5C82C;font-size:9px;font-weight:bold;padding:1px 4px;">RESIDENT</span></td><td><b>Digital Forms & Service Delivery</b></td><td style="color:#555;font-style:italic;">Manual and paper-based processes become accessible digital forms with reliable routing.</td></tr>
+          <tr><td style="background:#E8F4EC;"><span style="background:#1A5E30;color:#9FE;font-size:9px;font-weight:bold;padding:1px 4px;">FOUNDATIONS</span></td><td><b>Digital Principles & Standards</b></td><td style="color:#555;font-style:italic;">Coaching, governance, and tooling to help the whole team build better, consistently.</td></tr>
+          <tr><td style="background:#E8F4EC;"><span style="background:#1A5E30;color:#9FE;font-size:9px;font-weight:bold;padding:1px 4px;">FOUNDATIONS</span></td><td><b>Digital Infrastructure</b></td><td style="color:#555;font-style:italic;">Resources any team can build on — so no one has to solve the same problem twice.</td></tr>
+          <tr><td style="background:#E8F4EC;"><span style="background:#1A5E30;color:#9FE;font-size:9px;font-weight:bold;padding:1px 4px;">FOUNDATIONS</span></td><td><b>Application Support</b></td><td style="color:#555;font-style:italic;">The systems City departments depend on are maintained, integrated, and kept running.</td></tr>
+          <tr><td style="background:#FFF4E8;"><span style="background:#7A3800;color:#FFC;font-size:9px;font-weight:bold;padding:1px 4px;">IMPROVEMENT</span></td><td><b>Process Improvement & Solution Design</b></td><td style="color:#555;font-style:italic;">We listen, map how things work today, find the friction, and design solutions that serve you.</td></tr>
+          <tr><td style="background:#FFF4E8;"><span style="background:#7A3800;color:#FFC;font-size:9px;font-weight:bold;padding:1px 4px;">IMPROVEMENT</span></td><td><b>Custom Application Development</b></td><td style="color:#555;font-style:italic;">When the right solution doesn't exist off the shelf, we build it.</td></tr>
+        </table>
+        <div style="font-size:9px;color:#888;margin-top:12px;border-top:1px dashed #CCC;padding-top:6px;">Page 1 of 1 &nbsp;|&nbsp; Words: 127 &nbsp;|&nbsp; 🔤 English (United States)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WINDOW: STATS -->
+  <div class="win" id="win-stats" style="left:220px;top:40px;width:560px;height:360px;z-index:9;display:none;">
+    <div class="win-titlebar" onmousedown="startDrag(event,'win-stats')">
+      <span class="win-icon">📈</span>
+      <span class="win-title">City Stats Q2 2026.xls - City Sheets</span>
+      <div class="win-btns">
+        <div class="win-btn" onclick="minimizeWin('win-stats')">−</div>
+        <div class="win-btn">□</div>
+        <div class="win-btn close" onclick="closeWin('win-stats')">✕</div>
+      </div>
+    </div>
+    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Insert</span><span class="win-menu">Format</span><span class="win-menu">Tools</span><span class="win-menu">Data</span><span class="win-menu">Help</span></div>
+    <div class="xls-toolbar">
+      <span style="border:1px inset #999;padding:2px 8px;background:#fff;font-size:11px;min-width:60px;display:inline-block;">A1</span>
+      <span style="margin:0 4px;color:#888;">fx</span>
+      <span style="border:1px inset #999;padding:2px 8px;background:#fff;font-size:11px;flex:1;display:inline-block;">="Digital City by the Numbers"</span>
+    </div>
+    <div class="win-body xls-body">
+      <table class="xls-table">
+        <tr><th class="row-hdr"></th><th style="width:180px;">A</th><th style="width:120px;">B</th><th>C</th></tr>
+        <tr><td class="row-num">1</td><td style="background:#D0D8F0;font-weight:bold;color:#002868;font-size:12px;" colspan="3">📊 Digital City by the Numbers — Q2 2026</td></tr>
+        <tr><td class="row-num">2</td><td style="background:#E8ECF8;font-weight:bold;">Metric</td><td style="background:#E8ECF8;font-weight:bold;">Value</td><td style="background:#E8ECF8;font-weight:bold;">Notes</td></tr>
+        <tr><td class="row-num">3</td><td>Monthly website visitors</td><td class="num" id="s1">0</td><td style="color:#666;">southbendindiana.gov</td></tr>
+        <tr><td class="row-num">4</td><td>Form submissions / quarter</td><td class="num" id="s2">0</td><td style="color:#666;">No paper. No manual handoff.</td></tr>
+        <tr><td class="row-num">5</td><td>ETL pipelines in production</td><td class="gold" id="s3">0+</td><td style="color:#666;">Running 24/7 across city systems</td></tr>
+        <tr><td class="row-num">6</td><td>Domains managed</td><td class="gold" id="s4">0+</td><td style="color:#666;">Maintained and monitored</td></tr>
+        <tr><td class="row-num">7</td><td>Systems under active support</td><td class="num" id="s5">0</td><td style="color:#666;">GIS, permitting, ERP + more</td></tr>
+        <tr><td class="row-num">8</td><td>Integration uptime</td><td class="gold" id="s6">0%</td><td style="color:#666;">Baseline established Q1 2026</td></tr>
+        <tr><td class="row-num">9</td><td>ADA Title II compliance</td><td class="dim">—%</td><td style="color:#888;font-style:italic;">Full audit in progress</td></tr>
+        <tr><td class="row-num">10</td><td>Teams enabled (shared standards)</td><td class="dim">—</td><td style="color:#888;font-style:italic;">Data collection in progress</td></tr>
+        <tr><td class="row-num">11</td><td></td><td></td><td></td></tr>
+        <tr><td class="row-num">12</td><td style="color:#888;font-style:italic;font-size:10px;">SUM of confirmed metrics →</td><td class="num" style="font-size:11px;" id="s-sum">0</td><td style="color:#888;font-size:10px;">etl + domains + systems + uptime</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- WINDOW: CHANGES -->
+  <div class="win" id="win-changes" style="left:140px;top:60px;width:580px;height:420px;z-index:7;display:none;">
+    <div class="win-titlebar" onmousedown="startDrag(event,'win-changes')">
+      <span class="win-icon">📋</span>
+      <span class="win-title">What Changed.ppt - City Slides</span>
+      <div class="win-btns">
+        <div class="win-btn" onclick="minimizeWin('win-changes')">−</div>
+        <div class="win-btn">□</div>
+        <div class="win-btn close" onclick="closeWin('win-changes')">✕</div>
+      </div>
+    </div>
+    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Insert</span><span class="win-menu">Format</span><span class="win-menu">Slide Show</span><span class="win-menu">Help</span></div>
+    <div class="win-body ppt-body">
+
+      <div class="ppt-slide">
+        <div class="ppt-slide-title">Slide 1 of 3 — Resident Success Client Tracking</div>
+        <span class="ppt-tag">Staff-Facing</span>
+        <div class="ppt-grid">
+          <div class="ppt-col before"><div class="ppt-col-hdr">◀ Before</div>A time-intensive spreadsheet that got in the way of client work — error-prone, text-heavy, and difficult to navigate unless an appointment was already on the books.</div>
+          <div class="ppt-col after"><div class="ppt-col-hdr">After ▶</div>A right-sized workbook that supports the team's day-to-day — better-organized components protect data integrity and free up staff for the client work that matters most.</div>
+        </div>
+        <div class="ppt-felt">Felt by: Resident Success team</div>
+      </div>
+
+      <div class="ppt-slide">
+        <div class="ppt-slide-title">Slide 2 of 3 — Building Permit Applications</div>
+        <span class="ppt-tag">Resident-Facing</span>
+        <div class="ppt-grid">
+          <div class="ppt-col before"><div class="ppt-col-hdr">◀ Before</div>PDF forms, often brought in person — error-prone, requiring multiple trips and back-and-forth before a permit could move forward.</div>
+          <div class="ppt-col after"><div class="ppt-col-hdr">After ▶</div>Fully digital submission with automatic routing to building department staff. More accurate. No in-person trip required.</div>
+        </div>
+        <div class="ppt-felt">Felt by: Residents, business owners, Building Department staff</div>
+      </div>
+
+      <div class="ppt-slide">
+        <div class="ppt-slide-title">Slide 3 of 3 — southbendindiana.gov Accessibility</div>
+        <span class="ppt-tag">City-Wide · ADA Title II</span>
+        <div class="ppt-grid">
+          <div class="ppt-col before"><div class="ppt-col-hdr">◀ Before</div>50% compliance score. Templates never designed to meet ADA standards. Real barriers for residents using assistive technology.</div>
+          <div class="ppt-col after"><div class="ppt-col-hdr">After ▶</div>95% compliant. Code-level template changes, page-by-page remediation. A standard now carried across all 20+ city domains.<br><br>
+            <div style="font-size:10px;font-weight:bold;margin-bottom:3px;color:#002868;">Compliance progress:</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:#555;"><span>50%</span><div style="flex:1;" class="progress-xp"><div class="progress-xp-fill" id="ppt-progress" style="width:0;"></div></div><span>95%</span></div>
+          </div>
+        </div>
+        <div class="ppt-felt">Felt by: All residents, especially those using assistive technology</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WINDOW: README -->
+  <div class="win" id="win-readme" style="left:180px;top:100px;width:360px;height:240px;z-index:6;display:none;">
+    <div class="win-titlebar" onmousedown="startDrag(event,'win-readme')">
+      <span class="win-icon">❓</span>
+      <span class="win-title">ReadMe_First.txt - City Notepad</span>
+      <div class="win-btns">
+        <div class="win-btn" onclick="minimizeWin('win-readme')">−</div>
+        <div class="win-btn">□</div>
+        <div class="win-btn close" onclick="closeWin('win-readme')">✕</div>
+      </div>
+    </div>
+    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">Format</span><span class="win-menu">Help</span></div>
+    <div class="win-body">
+      <div class="notepad-body" contenteditable="true">README — Digital Services Q2 2026 Report
+
+Yes, we know.
+
+This report is presented in the style of
+Windows XP circa 2003.
+
+We build the city's digital future. We just
+like to present it old school.
+
+The juxtaposition is intentional.
+
+Double-click the files on the desktop.
+
+Drag the windows around.
+
+The data is real.
+
+— Digital Services Team
+   City of South Bend
+   Innovation & Technology</div>
+    </div>
+  </div>
+
+  <!-- CLIPPY -->
+  <div id="clippy">
+    <div class="clippy-bubble" id="clippy-bubble">
+      <b>It looks like you're viewing a city services report.</b><br><br>
+      Did you know South Bend processes <b>10,000 form submissions</b> per quarter — without a single sheet of paper?
+      <div class="clippy-actions">
+        <button class="clippy-btn" id="clippy-next">Next tip ▶</button>
+        <button class="clippy-btn" id="clippy-dismiss">Dismiss ✕</button>
+      </div>
+    </div>
+    <div class="clippy-mascot" id="clippy-mascot" title="Click for a tip!">⭐</div>
+  </div>
+
+  <!-- START MENU -->
+  <div id="start-menu">
+    <div class="sm-header">
+      <div>
+        <div class="sm-header-text">Digital Services</div>
+        <div class="sm-header-sub">City of South Bend · Q2 2026</div>
+      </div>
+    </div>
+    <div class="sm-item" onclick="openWin('win-welcome');closeStart()"><span class="sm-ico">📄</span> Welcome.txt</div>
+    <div class="sm-item" onclick="openWin('win-services');closeStart()"><span class="sm-ico">📊</span> Services Overview.doc</div>
+    <div class="sm-item" onclick="openWin('win-stats');closeStart()"><span class="sm-ico">📈</span> City Stats Q2 2026.xls</div>
+    <div class="sm-item" onclick="openWin('win-changes');closeStart()"><span class="sm-ico">📋</span> What Changed.ppt</div>
+    <div class="sm-item" onclick="openWin('win-readme');closeStart()"><span class="sm-ico">❓</span> ReadMe_First.txt</div>
+    <div class="sm-divider"></div>
+    <div class="sm-item"><span class="sm-ico">🌐</span> southbendindiana.gov</div>
+    <div class="sm-item"><span class="sm-ico">📧</span> Contact the Team</div>
+    <div class="sm-footer">
+      <button class="sm-footer-btn" onclick="closeStart()">Close ✕</button>
+    </div>
+  </div>
+
+</div><!-- /desktop -->
+
+<!-- TASKBAR -->
+<div id="taskbar">
+  <button id="start-btn" onclick="toggleStart()">
+    <div style="width:26px;height:17px;position:relative;overflow:hidden;flex-shrink:0;border-radius:1px;">
+      <div style="position:absolute;top:.14%;right:58.7%;bottom:0;left:0;"><img src="https://www.figma.com/api/mcp/asset/d7c7d07f-c286-40d3-b51d-b1e4eb7106e4" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
+      <div style="position:absolute;top:0;right:0;bottom:.14%;left:46.64%;"><img src="https://www.figma.com/api/mcp/asset/41c18c25-2d35-463d-8028-2ac6ff8531a8" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
+      <div style="position:absolute;top:.14%;right:41.93%;bottom:.19%;left:39.32%;"><img src="https://www.figma.com/api/mcp/asset/9868411a-2d79-455a-815b-5c091e73116f" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
+      <div style="position:absolute;top:0;right:46.74%;bottom:.13%;left:26.09%;"><img src="https://www.figma.com/api/mcp/asset/3f19ec23-0407-4cd3-b02c-d901c376463b" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
+      <div style="position:absolute;top:0;right:39.31%;bottom:.13%;left:44.03%;"><img src="https://www.figma.com/api/mcp/asset/9249162f-264a-45cd-96a1-ba64d279c10f" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
+      <div style="position:absolute;top:11.98%;right:81.02%;bottom:66.55%;left:7.81%;"><img src="https://www.figma.com/api/mcp/asset/f1f49a3d-261b-40fe-a3b4-813605813861" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
+    </div>
+    start
+  </button>
+  <div class="taskbar-divider"></div>
+  <div id="tb-btns" style="display:flex;gap:2px;"></div>
+  <div id="tray">
+    <span style="font-size:14px;">🔊</span>
+    <span style="font-size:14px;">🌐</span>
+    <div id="clock">10:24 AM</div>
+  </div>
+</div>
+
+<script>
+// Window state
+const wins={};
+let topZ=10;
+
+function initWin(id){
+  const el=document.getElementById(id);
+  wins[id]={open:false,minimized:false,el};
+  addTaskbarBtn(id);
+}
+
+function addTaskbarBtn(id){
+  const names={'win-welcome':'📄 Welcome.txt','win-services':'📊 Services.doc','win-stats':'📈 City Stats.xls','win-changes':'📋 What Changed.ppt','win-readme':'❓ ReadMe.txt'};
+  const btn=document.createElement('div');
+  btn.className='tb-btn';
+  btn.id='tb-'+id;
+  btn.innerHTML=`<span class="tb-icon">${names[id].split(' ')[0]}</span>${names[id].substring(3)}`;
+  btn.onclick=()=>toggleWin(id);
+  document.getElementById('tb-btns').appendChild(btn);
+}
+
+function openWin(id){
+  const w=wins[id];
+  w.el.style.display='flex';
+  w.el.style.zIndex=++topZ;
+  w.open=true;w.minimized=false;
+  focusWin(id);
+  document.getElementById('tb-'+id).classList.add('active');
+  if(id==='win-stats'&&!wins[id].counted){wins[id].counted=true;setTimeout(runCounters,300);}
+  if(id==='win-changes'){setTimeout(()=>{document.getElementById('ppt-progress').style.width='95%';},400);}
+}
+
+function closeWin(id){
+  const w=wins[id];
+  w.el.style.display='none';
+  w.open=false;w.minimized=false;
+  document.getElementById('tb-'+id).classList.remove('active');
+}
+
+function minimizeWin(id){
+  const w=wins[id];
+  w.el.style.display='none';
+  w.minimized=true;
+  document.getElementById('tb-'+id).classList.remove('active');
+}
+
+function toggleWin(id){
+  const w=wins[id];
+  if(!w.open||w.minimized){openWin(id);}
+  else{minimizeWin(id);}
+}
+
+function focusWin(id){
+  document.querySelectorAll('.win').forEach(w=>w.classList.remove('focused'));
+  document.getElementById(id).classList.add('focused');
+  document.getElementById(id).style.zIndex=++topZ;
+}
+
+// Drag
+let drag=null;
+function startDrag(e,id){
+  focusWin(id);
+  const el=document.getElementById(id);
+  const rect=el.getBoundingClientRect();
+  drag={id,ox:e.clientX-rect.left,oy:e.clientY-rect.top};
+  e.preventDefault();
+}
+document.addEventListener('mousemove',e=>{
+  if(!drag)return;
+  const el=document.getElementById(drag.id);
+  const desk=document.getElementById('desktop').getBoundingClientRect();
+  el.style.left=Math.max(0,Math.min(e.clientX-drag.ox-desk.left,desk.width-60))+'px';
+  el.style.top=Math.max(0,Math.min(e.clientY-drag.oy-desk.top,desk.height-30))+'px';
+});
+document.addEventListener('mouseup',()=>drag=null);
+
+// Click window to focus
+document.querySelectorAll('.win').forEach(w=>{
+  w.addEventListener('mousedown',()=>focusWin(w.id));
+});
+
+// Init all windows
+['win-welcome','win-services','win-stats','win-changes','win-readme'].forEach(initWin);
+openWin('win-welcome');
+
+// Clock
+function updateClock(){
+  const now=new Date();
+  const h=now.getHours(),m=now.getMinutes();
+  const ampm=h>=12?'PM':'AM';
+  document.getElementById('clock').textContent=`${h%12||12}:${String(m).padStart(2,'0')} ${ampm}`;
+}
+updateClock();setInterval(updateClock,10000);
+
+// Stat counters
+function countUp(id,target,suffix,dur){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const start=performance.now();
+  function step(now){
+    const t=Math.min((now-start)/dur,1);
+    const ease=1-Math.pow(1-t,3);
+    const val=Math.round(ease*target);
+    el.textContent=(val>=1000?val.toLocaleString():val)+(suffix||'');
+    if(t<1)requestAnimationFrame(step);
+    else if(id==='s6'){document.getElementById('s-sum').textContent='175+';}
+  }
+  requestAnimationFrame(step);
+}
+function runCounters(){
+  countUp('s1',8000,'',1200);
+  countUp('s2',10000,'',1400);
+  countUp('s3',50,'+',900);
+  countUp('s4',20,'+',700);
+  countUp('s5',15,'',600);
+  countUp('s6',90,'%',1100);
+}
+
+// Clippy
+const tips=[
+  '<b>It looks like you\'re viewing a city services report.</b><br><br>Did you know South Bend processes <b>10,000 form submissions</b> per quarter — without a single sheet of paper?',
+  '<b>Tip:</b> The Digital Services team manages <b>50+ ETL pipelines</b> running 24/7.<br><br>That\'s a lot of data moving around quietly.',
+  '<b>Did you know?</b> southbendindiana.gov went from <b>50% to 95%</b> ADA compliance.<br><br>That\'s not a patch — that\'s a rebuild.',
+  '<b>Drag the windows</b> around the desktop!<br><br>Or double-click the icons on the left to open files.',
+  '<b>Seven services. One team.</b><br><br>Resident-facing delivery, shared infrastructure, and continuous improvement — all at once.'
+];
+let tipIdx=0;
+function nextClippyTip(){
+  tipIdx=(tipIdx+1)%tips.length;
+  document.getElementById('clippy-text').innerHTML=tips[tipIdx]+'<div class="clippy-dismiss" onclick="nextClippyTip()">Next tip ▶ &nbsp;|&nbsp; <span onclick="dismissClippy()">Dismiss ✕</span></div>';
+  document.getElementById('clippy-star').classList.add('clippy-wiggle');
+  setTimeout(()=>document.getElementById('clippy-star').classList.remove('clippy-wiggle'),400);
+}
+function dismissClippy(){document.getElementById('clippy').style.display='none';}
+setTimeout(()=>document.getElementById('clippy').classList.add('visible'),2500);
+
+function toggleStart(){alert('Start Menu coming in Service Pack 2.');}
+</script>
+</body>
+</html>
