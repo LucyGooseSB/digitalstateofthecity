@@ -116,6 +116,78 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .blink{animation:blink 1s step-end infinite;}
 @keyframes blink{50%{opacity:0;}}
 
+/* PAINT */
+.paint-toolbar{background:#ECE9D8;border-bottom:1px solid #AAA;padding:4px;display:flex;gap:4px;flex-shrink:0;}
+.paint-tool{width:24px;height:24px;background:linear-gradient(180deg,#fff,#D4D0C8);border:1px outset #999;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.paint-tool.active{border:1px inset #999;background:#B8B4AA;}
+.paint-colors{display:flex;flex-wrap:wrap;gap:2px;padding:4px;background:#ECE9D8;border-bottom:1px solid #AAA;flex-shrink:0;}
+.paint-color{width:18px;height:18px;border:1px solid #666;cursor:pointer;}
+.paint-color.active{outline:2px solid #000;outline-offset:1px;}
+.paint-canvas-wrap{background:#808080;padding:8px;flex:1;overflow:auto;}
+.paint-canvas{background:#fff;cursor:crosshair;display:block;border:1px solid #000;}
+.paint-status{background:#ECE9D8;border-top:1px solid #AAA;padding:2px 6px;font-size:10px;color:#333;flex-shrink:0;}
+
+/* MINESWEEPER */
+.mines-body{background:#C0C0C0;padding:8px;height:100%;display:flex;flex-direction:column;gap:6px;align-items:center;}
+.mines-header{width:100%;background:#C0C0C0;border:2px inset #FFF;padding:4px 8px;display:flex;justify-content:space-between;align-items:center;}
+.mines-counter{background:#000;color:#F00;font-family:'Courier New',monospace;font-size:18px;font-weight:bold;padding:2px 6px;min-width:48px;text-align:center;letter-spacing:2px;}
+.mines-face{width:28px;height:28px;background:#C0C0C0;border:2px outset #FFF;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.mines-face:active{border:2px inset #FFF;}
+.mines-grid{border:3px inset #FFF;background:#C0C0C0;display:grid;grid-template-columns:repeat(9,24px);grid-template-rows:repeat(9,24px);gap:0;}
+.mines-cell{width:24px;height:24px;border:2px outset #FFF;background:#C0C0C0;font-weight:bold;font-size:14px;font-family:'Courier New',monospace;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;}
+.mines-cell.revealed{border:1px solid #808080;background:#BDBDBD;cursor:default;}
+.mines-cell.mine{background:#F00;}
+.mines-cell[data-n="1"]{color:#0000FF;}
+.mines-cell[data-n="2"]{color:#008000;}
+.mines-cell[data-n="3"]{color:#FF0000;}
+.mines-cell[data-n="4"]{color:#000080;}
+.mines-cell[data-n="5"]{color:#800000;}
+.mines-cell[data-n="6"]{color:#008080;}
+.mines-cell[data-n="7"]{color:#000000;}
+.mines-cell[data-n="8"]{color:#808080;}
+
+/* WINAMP */
+.winamp-body{background:linear-gradient(180deg,#2a2a3e 0%,#0f0f1f 100%);padding:10px;height:100%;color:#00FF41;font-family:'Courier New',monospace;display:flex;flex-direction:column;gap:8px;}
+.winamp-display{background:#000;border:1px inset #333;padding:8px;}
+.winamp-track{font-size:12px;color:#F5C82C;font-weight:bold;white-space:nowrap;overflow:hidden;}
+.winamp-track-scroll{display:inline-block;animation:marquee 14s linear infinite;padding-right:60px;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+.winamp-meta{font-size:10px;color:#00FF41;margin-top:4px;}
+.winamp-eq{display:flex;align-items:flex-end;gap:2px;height:48px;background:#000;padding:4px;border:1px inset #333;}
+.winamp-bar{flex:1;background:linear-gradient(180deg,#F00 0%,#FF0 40%,#0F0 100%);transition:height .15s ease;min-height:2px;}
+.winamp-controls{display:flex;gap:4px;}
+.winamp-btn{flex:1;background:linear-gradient(180deg,#555,#222);border:1px outset #888;color:#F5C82C;padding:4px;cursor:pointer;font-size:12px;}
+.winamp-btn:active{border:1px inset #888;}
+.winamp-playlist{background:#000;border:1px inset #333;padding:4px;flex:1;overflow:auto;font-size:10px;}
+.winamp-song{padding:2px 4px;cursor:pointer;color:#00FF41;}
+.winamp-song:hover{background:#002200;}
+.winamp-song.playing{background:#003300;color:#F5C82C;font-weight:bold;}
+
+/* SBSHARE */
+.share-toolbar{background:#ECE9D8;border-bottom:1px solid #AAA;padding:4px;display:flex;gap:4px;align-items:center;flex-shrink:0;}
+.share-search{flex:1;border:1px inset #999;padding:2px 6px;font-size:11px;}
+.share-btn{background:linear-gradient(180deg,#fff,#D4D0C8);border:1px outset #999;padding:2px 10px;font-size:11px;cursor:pointer;}
+.share-btn:active{border:1px inset #999;}
+.share-stats{background:#F5F5DC;border-bottom:1px solid #AAA;padding:3px 8px;font-size:10px;color:#555;display:flex;justify-content:space-between;flex-shrink:0;}
+.share-stats .online{color:#008000;font-weight:bold;}
+.share-list{overflow:auto;background:#fff;}
+.share-table{width:100%;border-collapse:collapse;font-size:11px;}
+.share-table th{background:#D4D0C8;border:1px solid #999;padding:3px 6px;text-align:left;font-size:10px;position:sticky;top:0;}
+.share-table td{border-bottom:1px solid #EEE;padding:3px 6px;}
+.share-table tr:hover td{background:#E8ECF8;}
+.share-progress{width:80px;height:10px;border:1px inset #999;background:#fff;position:relative;display:inline-block;vertical-align:middle;}
+.share-progress-fill{height:100%;background:linear-gradient(180deg,#6EA8E8,#2060CC);transition:width .5s ease;}
+.share-speed{color:#008000;font-weight:bold;font-family:'Courier New',monospace;font-size:10px;}
+
+/* SCREENSAVER */
+#screensaver{position:fixed;inset:0;background:#000;z-index:99999;display:none;overflow:hidden;cursor:none;}
+#screensaver.active{display:block;}
+.ss-text{position:absolute;font-family:'Merriweather',serif;font-weight:900;font-size:32px;letter-spacing:.05em;white-space:nowrap;padding:16px 24px;border:2px solid currentColor;border-radius:4px;}
+
+/* BLINK */
+.blink{animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:16px;height:16px;}
 ::-webkit-scrollbar-track{background:#D4D0C8;}
@@ -147,6 +219,24 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
   <div class="icon" style="left:16px;top:352px;" ondblclick="openWin('win-readme')">
     <div class="icon-img">❓</div>
     <div class="icon-label">ReadMe_First.txt</div>
+  </div>
+
+  <!-- SECOND COLUMN: FUN APPS -->
+  <div class="icon" style="left:104px;top:16px;" ondblclick="openWin('win-paint')">
+    <div class="icon-img">🎨</div>
+    <div class="icon-label">Paint</div>
+  </div>
+  <div class="icon" style="left:104px;top:100px;" ondblclick="openWin('win-mines')">
+    <div class="icon-img">💣</div>
+    <div class="icon-label">Minesweeper</div>
+  </div>
+  <div class="icon" style="left:104px;top:184px;" ondblclick="openWin('win-winamp')">
+    <div class="icon-img">🎵</div>
+    <div class="icon-label">SBWinamp</div>
+  </div>
+  <div class="icon" style="left:104px;top:268px;" ondblclick="openWin('win-share')">
+    <div class="icon-img">🌐</div>
+    <div class="icon-label">SBShare</div>
   </div>
 
   <!-- WINDOW: WELCOME -->
@@ -355,11 +445,118 @@ The data is real.
     </div>
   </div>
 
+  <!-- WINDOW: PAINT -->
+  <div class="win" id="win-paint" style="left:240px;top:60px;width:520px;height:400px;z-index:5;display:none;">
+    <div class="win-titlebar" onmousedown="startDrag(event,'win-paint')">
+      <span class="win-icon">🎨</span>
+      <span class="win-title">untitled_citymap.bmp - Paint</span>
+      <div class="win-btns">
+        <div class="win-btn" onclick="minimizeWin('win-paint')">−</div>
+        <div class="win-btn">□</div>
+        <div class="win-btn close" onclick="closeWin('win-paint')">✕</div>
+      </div>
+    </div>
+    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Image</span><span class="win-menu">Colors</span><span class="win-menu">Help</span></div>
+    <div class="paint-toolbar">
+      <div class="paint-tool active" data-tool="pencil" title="Pencil">✏️</div>
+      <div class="paint-tool" data-tool="eraser" title="Eraser">🧹</div>
+      <div class="paint-tool" data-tool="brush" title="Brush">🖌️</div>
+      <div class="paint-tool" data-tool="clear" title="Clear canvas">🗑️</div>
+      <div class="paint-tool" data-tool="save" title="Save (not really)">💾</div>
+    </div>
+    <div class="paint-colors" id="paint-colors"></div>
+    <div class="paint-canvas-wrap">
+      <canvas id="paint-canvas" class="paint-canvas" width="480" height="240"></canvas>
+    </div>
+    <div class="paint-status" id="paint-status">For Help, click Help Topics on the Help Menu.</div>
+  </div>
+
+  <!-- WINDOW: MINESWEEPER -->
+  <div class="win" id="win-mines" style="left:280px;top:40px;width:270px;height:340px;z-index:5;display:none;">
+    <div class="win-titlebar" onmousedown="startDrag(event,'win-mines')">
+      <span class="win-icon">💣</span>
+      <span class="win-title">Minesweeper</span>
+      <div class="win-btns">
+        <div class="win-btn" onclick="minimizeWin('win-mines')">−</div>
+        <div class="win-btn">□</div>
+        <div class="win-btn close" onclick="closeWin('win-mines')">✕</div>
+      </div>
+    </div>
+    <div class="win-menubar"><span class="win-menu" onclick="newMinesGame()">Game</span><span class="win-menu">Help</span></div>
+    <div class="win-body mines-body">
+      <div class="mines-header">
+        <div class="mines-counter" id="mines-counter">010</div>
+        <div class="mines-face" id="mines-face" onclick="newMinesGame()">🙂</div>
+        <div class="mines-counter" id="mines-timer">000</div>
+      </div>
+      <div class="mines-grid" id="mines-grid"></div>
+    </div>
+  </div>
+
+  <!-- WINDOW: WINAMP -->
+  <div class="win" id="win-winamp" style="left:300px;top:80px;width:300px;height:360px;z-index:5;display:none;">
+    <div class="win-titlebar" onmousedown="startDrag(event,'win-winamp')">
+      <span class="win-icon">🎵</span>
+      <span class="win-title">SBWinamp 2.95 — "It really kicks the potholes"</span>
+      <div class="win-btns">
+        <div class="win-btn" onclick="minimizeWin('win-winamp')">−</div>
+        <div class="win-btn">□</div>
+        <div class="win-btn close" onclick="closeWin('win-winamp')">✕</div>
+      </div>
+    </div>
+    <div class="win-body winamp-body">
+      <div class="winamp-display">
+        <div class="winamp-track"><span class="winamp-track-scroll" id="winamp-track">♪ CITY COUNCIL MEETING VOL. 12 — "The Snow Plow Sonata" ♪</span></div>
+        <div class="winamp-meta" id="winamp-meta">03:47 / 42:18  ·  128 kbps  ·  44 kHz  ·  stereo</div>
+      </div>
+      <div class="winamp-eq" id="winamp-eq"></div>
+      <div class="winamp-controls">
+        <button class="winamp-btn" onclick="winampPrev()">⏮</button>
+        <button class="winamp-btn" onclick="winampToggle()" id="winamp-play">▶</button>
+        <button class="winamp-btn" onclick="winampNext()">⏭</button>
+        <button class="winamp-btn" onclick="winampShuffle()" title="Shuffle">🔀</button>
+      </div>
+      <div class="winamp-playlist" id="winamp-playlist"></div>
+    </div>
+  </div>
+
+  <!-- WINDOW: SBSHARE -->
+  <div class="win" id="win-share" style="left:200px;top:30px;width:580px;height:400px;z-index:5;display:none;">
+    <div class="win-titlebar" onmousedown="startDrag(event,'win-share')">
+      <span class="win-icon">🌐</span>
+      <span class="win-title">SBShare — Municipal P2P Network</span>
+      <div class="win-btns">
+        <div class="win-btn" onclick="minimizeWin('win-share')">−</div>
+        <div class="win-btn">□</div>
+        <div class="win-btn close" onclick="closeWin('win-share')">✕</div>
+      </div>
+    </div>
+    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">Network</span><span class="win-menu">Tools</span><span class="win-menu">Help</span></div>
+    <div class="share-toolbar">
+      <input class="share-search" id="share-search" placeholder="Search the Municipal Network..." oninput="filterShare()">
+      <button class="share-btn" onclick="filterShare()">🔍 Search</button>
+      <button class="share-btn">👥 Users</button>
+    </div>
+    <div class="share-stats">
+      <span><span class="online">● ONLINE</span> &nbsp;·&nbsp; Connected to SBShare @ southbendindiana.gov</span>
+      <span id="share-stat-count">4,218 peers sharing 19,447 files</span>
+    </div>
+    <div class="win-body share-list">
+      <table class="share-table">
+        <thead><tr><th>Filename</th><th>Size</th><th>Shared By</th><th>Type</th><th>Progress</th><th>Speed</th></tr></thead>
+        <tbody id="share-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SCREENSAVER -->
+  <div id="screensaver"><div class="ss-text" id="ss-text">CITY OF SOUTH BEND</div></div>
+
   <!-- CLIPPY -->
   <div id="clippy">
-    <div class="clippy-bubble" id="clippy-bubble">
-      <b>It looks like you're viewing a city services report.</b><br><br>
-      Did you know South Bend processes <b>10,000 form submissions</b> per quarter — without a single sheet of paper?
+    <div class="clippy-bubble">
+      <div id="clippy-bubble"><b>It looks like you're viewing a city services report.</b><br><br>
+      Did you know South Bend processes <b>10,000 form submissions</b> per quarter — without a single sheet of paper?</div>
       <div class="clippy-actions">
         <button class="clippy-btn" id="clippy-next" onclick="nextClippyTip()">Next tip ▶</button>
         <button class="clippy-btn" id="clippy-dismiss" onclick="dismissClippy()">Dismiss ✕</button>
@@ -381,6 +578,11 @@ The data is real.
     <div class="sm-item" onclick="openWin('win-stats');closeStart()"><span class="sm-ico">📈</span> City Stats Q2 2026.xls</div>
     <div class="sm-item" onclick="openWin('win-changes');closeStart()"><span class="sm-ico">📋</span> What Changed.ppt</div>
     <div class="sm-item" onclick="openWin('win-readme');closeStart()"><span class="sm-ico">❓</span> ReadMe_First.txt</div>
+    <div class="sm-divider"></div>
+    <div class="sm-item" onclick="openWin('win-paint');closeStart()"><span class="sm-ico">🎨</span> Paint</div>
+    <div class="sm-item" onclick="openWin('win-mines');closeStart()"><span class="sm-ico">💣</span> Minesweeper</div>
+    <div class="sm-item" onclick="openWin('win-winamp');closeStart()"><span class="sm-ico">🎵</span> SBWinamp</div>
+    <div class="sm-item" onclick="openWin('win-share');closeStart()"><span class="sm-ico">🌐</span> SBShare</div>
     <div class="sm-divider"></div>
     <div class="sm-item"><span class="sm-ico">🌐</span> southbendindiana.gov</div>
     <div class="sm-item"><span class="sm-ico">📧</span> Contact the Team</div>
@@ -425,7 +627,7 @@ function initWin(id){
 }
 
 function addTaskbarBtn(id){
-  const names={'win-welcome':'📄 Welcome.txt','win-services':'📊 Services.doc','win-stats':'📈 City Stats.xls','win-changes':'📋 What Changed.ppt','win-readme':'❓ ReadMe.txt'};
+  const names={'win-welcome':'📄 Welcome.txt','win-services':'📊 Services.doc','win-stats':'📈 City Stats.xls','win-changes':'📋 What Changed.ppt','win-readme':'❓ ReadMe.txt','win-paint':'🎨 Paint','win-mines':'💣 Minesweeper','win-winamp':'🎵 SBWinamp','win-share':'🌐 SBShare'};
   const btn=document.createElement('div');
   btn.className='tb-btn';
   btn.id='tb-'+id;
@@ -443,6 +645,10 @@ function openWin(id){
   document.getElementById('tb-'+id).classList.add('active');
   if(id==='win-stats'&&!wins[id].counted){wins[id].counted=true;setTimeout(runCounters,300);}
   if(id==='win-changes'){setTimeout(()=>{document.getElementById('ppt-progress').style.width='95%';},400);}
+  if(id==='win-paint'&&!wins[id].initted){wins[id].initted=true;initPaint();}
+  if(id==='win-mines'&&!wins[id].initted){wins[id].initted=true;newMinesGame();}
+  if(id==='win-winamp'&&!wins[id].initted){wins[id].initted=true;initWinamp();}
+  if(id==='win-share'&&!wins[id].initted){wins[id].initted=true;initShare();}
 }
 
 function closeWin(id){
@@ -495,7 +701,7 @@ document.querySelectorAll('.win').forEach(w=>{
 });
 
 // Init all windows
-['win-welcome','win-services','win-stats','win-changes','win-readme'].forEach(initWin);
+['win-welcome','win-services','win-stats','win-changes','win-readme','win-paint','win-mines','win-winamp','win-share'].forEach(initWin);
 openWin('win-welcome');
 
 // Clock
@@ -551,6 +757,167 @@ setTimeout(()=>document.getElementById('clippy').classList.add('visible'),2500);
 
 function toggleStart(){document.getElementById('start-menu').classList.toggle('open');}
 function closeStart(){document.getElementById('start-menu').classList.remove('open');}
+
+// ============ PAINT ============
+const PAINT_COLORS=['#000000','#808080','#800000','#808000','#008000','#008080','#000080','#800080','#808040','#004040','#0080FF','#004080','#4080FF','#400080','#FFFFFF','#C0C0C0','#FF0000','#FFFF00','#00FF00','#00FFFF','#0000FF','#FF00FF','#FFFF80','#00FF80'];
+let paintState={tool:'pencil',color:'#002868',drawing:false,lastX:0,lastY:0};
+function initPaint(){
+  const pal=document.getElementById('paint-colors');
+  pal.innerHTML='';
+  PAINT_COLORS.forEach((c,i)=>{
+    const sw=document.createElement('div');
+    sw.className='paint-color'+(c===paintState.color?' active':'');
+    sw.style.background=c;
+    sw.onclick=()=>{paintState.color=c;pal.querySelectorAll('.paint-color').forEach(e=>e.classList.remove('active'));sw.classList.add('active');};
+    pal.appendChild(sw);
+  });
+  const canvas=document.getElementById('paint-canvas');
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.lineCap='round';ctx.lineJoin='round';
+  document.querySelectorAll('.paint-tool').forEach(t=>{
+    t.onclick=()=>{
+      const tool=t.dataset.tool;
+      if(tool==='clear'){ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);return;}
+      if(tool==='save'){document.getElementById('paint-status').textContent='Saved to C:\\citymap\\untitled.bmp (not really)';setTimeout(()=>{document.getElementById('paint-status').textContent='For Help, click Help Topics on the Help Menu.';},2500);return;}
+      paintState.tool=tool;
+      document.querySelectorAll('.paint-tool').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+    };
+  });
+  function pos(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
+  canvas.onmousedown=e=>{paintState.drawing=true;const p=pos(e);paintState.lastX=p.x;paintState.lastY=p.y;};
+  canvas.onmousemove=e=>{
+    const p=pos(e);
+    document.getElementById('paint-status').textContent=`${Math.round(p.x)}, ${Math.round(p.y)}px`;
+    if(!paintState.drawing)return;
+    ctx.beginPath();
+    ctx.moveTo(paintState.lastX,paintState.lastY);
+    ctx.lineTo(p.x,p.y);
+    ctx.strokeStyle=paintState.tool==='eraser'?'#fff':paintState.color;
+    ctx.lineWidth=paintState.tool==='brush'?6:paintState.tool==='eraser'?12:2;
+    ctx.stroke();
+    paintState.lastX=p.x;paintState.lastY=p.y;
+  };
+  canvas.onmouseup=()=>paintState.drawing=false;
+  canvas.onmouseleave=()=>paintState.drawing=false;
+}
+
+// ============ MINESWEEPER ============
+let mines={grid:[],revealed:[],flagged:[],over:false,won:false,timer:0,tInt:null,started:false};
+const MINES_SIZE=9,MINES_COUNT=10;
+function newMinesGame(){
+  const w=wins['win-mines'];if(w&&!w.initted)w.initted=true;
+  mines={grid:[],revealed:[],flagged:[],over:false,won:false,timer:0,tInt:null,started:false};
+  for(let i=0;i<MINES_SIZE;i++){mines.grid.push([]);mines.revealed.push([]);mines.flagged.push([]);for(let j=0;j<MINES_SIZE;j++){mines.grid[i].push(0);mines.revealed[i].push(false);mines.flagged[i].push(false);}}
+  let placed=0;while(placed<MINES_COUNT){const r=Math.floor(Math.random()*MINES_SIZE),c=Math.floor(Math.random()*MINES_SIZE);if(mines.grid[r][c]!==-1){mines.grid[r][c]=-1;placed++;}}
+  for(let r=0;r<MINES_SIZE;r++)for(let c=0;c<MINES_SIZE;c++){if(mines.grid[r][c]===-1)continue;let n=0;for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++){const nr=r+dr,nc=c+dc;if(nr>=0&&nr<MINES_SIZE&&nc>=0&&nc<MINES_SIZE&&mines.grid[nr][nc]===-1)n++;}mines.grid[r][c]=n;}
+  if(mines.tInt)clearInterval(mines.tInt);
+  document.getElementById('mines-timer').textContent='000';
+  document.getElementById('mines-counter').textContent=String(MINES_COUNT).padStart(3,'0');
+  document.getElementById('mines-face').textContent='🙂';
+  renderMines();
+}
+function renderMines(){
+  const g=document.getElementById('mines-grid');g.innerHTML='';
+  for(let r=0;r<MINES_SIZE;r++)for(let c=0;c<MINES_SIZE;c++){
+    const cell=document.createElement('div');
+    cell.className='mines-cell';
+    if(mines.revealed[r][c]){
+      cell.classList.add('revealed');
+      if(mines.grid[r][c]===-1){cell.classList.add('mine');cell.textContent='💣';}
+      else if(mines.grid[r][c]>0){cell.dataset.n=mines.grid[r][c];cell.textContent=mines.grid[r][c];}
+    }else if(mines.flagged[r][c]){cell.textContent='🚩';}
+    cell.onclick=e=>{e.preventDefault();revealMines(r,c);};
+    cell.oncontextmenu=e=>{e.preventDefault();flagMines(r,c);};
+    g.appendChild(cell);
+  }
+}
+function startMinesTimer(){if(mines.started)return;mines.started=true;mines.tInt=setInterval(()=>{mines.timer++;document.getElementById('mines-timer').textContent=String(Math.min(mines.timer,999)).padStart(3,'0');},1000);}
+function revealMines(r,c){
+  if(mines.over||mines.revealed[r][c]||mines.flagged[r][c])return;
+  startMinesTimer();
+  mines.revealed[r][c]=true;
+  if(mines.grid[r][c]===-1){mines.over=true;clearInterval(mines.tInt);for(let i=0;i<MINES_SIZE;i++)for(let j=0;j<MINES_SIZE;j++)if(mines.grid[i][j]===-1)mines.revealed[i][j]=true;document.getElementById('mines-face').textContent='💀';renderMines();return;}
+  if(mines.grid[r][c]===0)for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++){const nr=r+dr,nc=c+dc;if(nr>=0&&nr<MINES_SIZE&&nc>=0&&nc<MINES_SIZE)revealMines(nr,nc);}
+  let rev=0;for(let i=0;i<MINES_SIZE;i++)for(let j=0;j<MINES_SIZE;j++)if(mines.revealed[i][j])rev++;
+  if(rev===MINES_SIZE*MINES_SIZE-MINES_COUNT){mines.won=true;mines.over=true;clearInterval(mines.tInt);document.getElementById('mines-face').textContent='😎';}
+  renderMines();
+}
+function flagMines(r,c){if(mines.over||mines.revealed[r][c])return;mines.flagged[r][c]=!mines.flagged[r][c];let f=0;for(let i=0;i<MINES_SIZE;i++)for(let j=0;j<MINES_SIZE;j++)if(mines.flagged[i][j])f++;document.getElementById('mines-counter').textContent=String(Math.max(0,MINES_COUNT-f)).padStart(3,'0');renderMines();}
+
+// ============ WINAMP ============
+const WINAMP_TRACKS=[
+  {title:'City Council Meeting Vol. 12 — "The Snow Plow Sonata"',len:'42:18'},
+  {title:'Public Comments (Extended Mix)',len:'18:44'},
+  {title:'Pothole Progress Report — Featuring the Street Department',len:'07:22'},
+  {title:'Snow Plow Tracking — B-Sides and Rarities',len:'15:03'},
+  {title:'Budget Hearing 2026 — Live from the Council Chamber',len:'1:58:12'},
+  {title:'ETL Pipeline Ambient Vol. 3',len:'24:00'},
+  {title:'Trash Pickup Schedule (Spoken Word)',len:'11:47'},
+  {title:'ADA Compliance — The Remix',len:'09:15'}
+];
+let winampIdx=0,winampPlaying=true,winampEqInt=null;
+function initWinamp(){
+  const eq=document.getElementById('winamp-eq');eq.innerHTML='';
+  for(let i=0;i<16;i++){const b=document.createElement('div');b.className='winamp-bar';b.style.height='8px';eq.appendChild(b);}
+  const pl=document.getElementById('winamp-playlist');pl.innerHTML='';
+  WINAMP_TRACKS.forEach((t,i)=>{const s=document.createElement('div');s.className='winamp-song'+(i===winampIdx?' playing':'');s.textContent=`${String(i+1).padStart(2,'0')}. ${t.title}  [${t.len}]`;s.onclick=()=>{winampIdx=i;winampUpdate();};pl.appendChild(s);});
+  winampUpdate();
+  if(winampEqInt)clearInterval(winampEqInt);
+  winampEqInt=setInterval(()=>{if(!winampPlaying)return;document.querySelectorAll('#winamp-eq .winamp-bar').forEach(b=>{b.style.height=(4+Math.random()*36)+'px';});},110);
+}
+function winampUpdate(){
+  document.getElementById('winamp-track').textContent=`♪ ${WINAMP_TRACKS[winampIdx].title} ♪`;
+  document.getElementById('winamp-meta').textContent=`00:00 / ${WINAMP_TRACKS[winampIdx].len}  ·  128 kbps  ·  44 kHz  ·  stereo`;
+  document.querySelectorAll('.winamp-song').forEach((s,i)=>s.classList.toggle('playing',i===winampIdx));
+}
+function winampNext(){winampIdx=(winampIdx+1)%WINAMP_TRACKS.length;winampUpdate();}
+function winampPrev(){winampIdx=(winampIdx-1+WINAMP_TRACKS.length)%WINAMP_TRACKS.length;winampUpdate();}
+function winampToggle(){winampPlaying=!winampPlaying;document.getElementById('winamp-play').textContent=winampPlaying?'▶':'❚❚';}
+function winampShuffle(){winampIdx=Math.floor(Math.random()*WINAMP_TRACKS.length);winampUpdate();}
+
+// ============ SBSHARE ============
+const SHARE_FILES=[
+  {n:'permit_application_final_FINAL_v3.pdf',s:'1.2 MB',u:'BuildingDept_Dave',t:'PDF',p:100,sp:'COMPLETE'},
+  {n:'budget_2026_public.xls',s:'847 KB',u:'Finance_Team',t:'XLS',p:100,sp:'COMPLETE'},
+  {n:'trash_pickup_schedule_Q3.doc',s:'124 KB',u:'PublicWorks_Karen',t:'DOC',p:78,sp:'42 KB/s'},
+  {n:'southbend_potholes_2026.mp3',s:'4.7 MB',u:'StreetDept_Mike',t:'MP3',p:34,sp:'128 KB/s'},
+  {n:'council_meeting_2026_06_14.wmv',s:'218 MB',u:'CityClerk_Janet',t:'WMV',p:12,sp:'56 KB/s'},
+  {n:'zoning_map_downtown.jpg',s:'2.1 MB',u:'Planning_Todd',t:'JPG',p:100,sp:'COMPLETE'},
+  {n:'snow_plow_routes_2026.kml',s:'342 KB',u:'PublicWorks_Karen',t:'KML',p:67,sp:'89 KB/s'},
+  {n:'ada_compliance_audit_preliminary.pdf',s:'5.4 MB',u:'Accessibility_Lead',t:'PDF',p:100,sp:'COMPLETE'},
+  {n:'parks_dept_summer_programs.pdf',s:'1.8 MB',u:'ParksRec_Sarah',t:'PDF',p:100,sp:'COMPLETE'},
+  {n:'water_quality_report_Q2.xlsx',s:'612 KB',u:'Utilities_Bob',t:'XLSX',p:100,sp:'COMPLETE'},
+  {n:'311_call_stats_2026.csv',s:'4.9 MB',u:'311_Service_Desk',t:'CSV',p:100,sp:'COMPLETE'},
+  {n:'downtown_parking_study.pdf',s:'12.3 MB',u:'Planning_Todd',t:'PDF',p:44,sp:'112 KB/s'},
+  {n:'fire_response_times_heatmap.png',s:'890 KB',u:'FireDept_Chief',t:'PNG',p:100,sp:'COMPLETE'},
+  {n:'bike_lane_proposal_v7.dwg',s:'8.2 MB',u:'Engineering_Linda',t:'DWG',p:23,sp:'71 KB/s'},
+  {n:'welcome_to_south_bend.wav',s:'2.4 MB',u:'Communications',t:'WAV',p:100,sp:'COMPLETE'},
+  {n:'permit_application_final.pdf',s:'1.1 MB',u:'BuildingDept_Dave',t:'PDF',p:100,sp:'COMPLETE'},
+  {n:'permit_application_FINAL.pdf',s:'1.1 MB',u:'BuildingDept_Dave',t:'PDF',p:100,sp:'COMPLETE'},
+  {n:'permit_application_FINAL_use_this_one.pdf',s:'1.2 MB',u:'BuildingDept_Dave',t:'PDF',p:100,sp:'COMPLETE'}
+];
+function initShare(){renderShare(SHARE_FILES);setInterval(tickShare,1800);}
+function renderShare(files){
+  const tb=document.getElementById('share-tbody');tb.innerHTML='';
+  files.forEach(f=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>📄 ${f.n}</td><td>${f.s}</td><td style="color:#008000;">${f.u}</td><td>${f.t}</td><td><div class="share-progress"><div class="share-progress-fill" style="width:${f.p}%;"></div></div></td><td class="share-speed">${f.sp}</td>`;
+    tb.appendChild(tr);
+  });
+}
+function filterShare(){const q=document.getElementById('share-search').value.toLowerCase();renderShare(SHARE_FILES.filter(f=>f.n.toLowerCase().includes(q)||f.u.toLowerCase().includes(q)));}
+function tickShare(){SHARE_FILES.forEach(f=>{if(f.p<100){f.p=Math.min(100,f.p+Math.floor(Math.random()*8)+1);if(f.p===100)f.sp='COMPLETE';}});filterShare();}
+
+// ============ SCREENSAVER ============
+let ssIdle=null,ssX=100,ssY=100,ssVX=2,ssVY=2,ssInt=null;
+const SS_COLORS=['#00FF41','#F5C82C','#FF00FF','#00FFFF','#FF6600','#FFFFFF'];
+function resetIdle(){clearTimeout(ssIdle);if(document.getElementById('screensaver').classList.contains('active'))stopScreensaver();ssIdle=setTimeout(startScreensaver,45000);}
+function startScreensaver(){const ss=document.getElementById('screensaver');ss.classList.add('active');const t=document.getElementById('ss-text');ssX=Math.random()*(window.innerWidth-340);ssY=Math.random()*(window.innerHeight-80);t.style.color=SS_COLORS[Math.floor(Math.random()*SS_COLORS.length)];ssInt=setInterval(()=>{ssX+=ssVX;ssY+=ssVY;const w=t.offsetWidth,h=t.offsetHeight;let bounced=false;if(ssX<=0||ssX>=window.innerWidth-w){ssVX*=-1;bounced=true;}if(ssY<=0||ssY>=window.innerHeight-h){ssVY*=-1;bounced=true;}if(bounced)t.style.color=SS_COLORS[Math.floor(Math.random()*SS_COLORS.length)];t.style.left=ssX+'px';t.style.top=ssY+'px';},16);}
+function stopScreensaver(){document.getElementById('screensaver').classList.remove('active');clearInterval(ssInt);}
+['mousemove','keydown','mousedown','touchstart'].forEach(ev=>document.addEventListener(ev,resetIdle));
+resetIdle();
 </script>
 </body>
 </html>
