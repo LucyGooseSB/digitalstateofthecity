@@ -97,7 +97,7 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .clippy-btn:hover{color:#CC0000;}
 .clippy-mascot{width:52px;height:52px;background:#002868;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;box-shadow:2px 2px 6px rgba(0,0,0,.4);border:2px solid #F5C82C;}
 .clippy-wiggle{animation:wiggle .4s ease-in-out;}
-@keyframes wiggle{0%,100%{transform:rotate(0deg);}25%{transform:rotate(-10deg);}75%{transform:rotate(10deg));}}
+@keyframes wiggle{0%,100%{transform:rotate(0deg);}25%{transform:rotate(-10deg);}75%{transform:rotate(10deg);}}
 /* START MENU */
 #start-menu{display:none;position:absolute;bottom:32px;left:0;width:220px;background:linear-gradient(180deg,#1A58CC,#0A3A9A);border:1px solid #0a2060;box-shadow:3px -3px 8px rgba(0,0,0,.5);z-index:9999;}
 #start-menu.open{display:block;}
@@ -366,8 +366,8 @@ The data is real.
       <b>It looks like you're viewing a city services report.</b><br><br>
       Did you know South Bend processes <b>10,000 form submissions</b> per quarter — without a single sheet of paper?
       <div class="clippy-actions">
-        <button class="clippy-btn" id="clippy-next">Next tip ▶</button>
-        <button class="clippy-btn" id="clippy-dismiss">Dismiss ✕</button>
+        <button class="clippy-btn" id="clippy-next" onclick="nextClippyTip()">Next tip ▶</button>
+        <button class="clippy-btn" id="clippy-dismiss" onclick="dismissClippy()">Dismiss ✕</button>
       </div>
     </div>
     <div class="clippy-mascot" id="clippy-mascot" title="Click for a tip!">⭐</div>
@@ -547,14 +547,15 @@ const tips=[
 let tipIdx=0;
 function nextClippyTip(){
   tipIdx=(tipIdx+1)%tips.length;
-  document.getElementById('clippy-text').innerHTML=tips[tipIdx]+'<div class="clippy-dismiss" onclick="nextClippyTip()">Next tip ▶ &nbsp;|&nbsp; <span onclick="dismissClippy()">Dismiss ✕</span></div>';
-  document.getElementById('clippy-star').classList.add('clippy-wiggle');
-  setTimeout(()=>document.getElementById('clippy-star').classList.remove('clippy-wiggle'),400);
+  document.getElementById('clippy-bubble').innerHTML=tips[tipIdx];
+  document.getElementById('clippy-mascot').classList.add('clippy-wiggle');
+  setTimeout(()=>document.getElementById('clippy-mascot').classList.remove('clippy-wiggle'),400);
 }
 function dismissClippy(){document.getElementById('clippy').style.display='none';}
 setTimeout(()=>document.getElementById('clippy').classList.add('visible'),2500);
 
-function toggleStart(){alert('Start Menu coming in Service Pack 2.');}
+function toggleStart(){document.getElementById('start-menu').classList.toggle('open');}
+function closeStart(){document.getElementById('start-menu').classList.remove('open');}
 </script>
 </body>
 </html>
