@@ -6,7 +6,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:100vh;display:flex;flex-direction:column;user-select:none;}
+body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:100vh;display:flex;flex-direction:column;}
+.icon,.win-titlebar,.tb-btn,.win-btn{user-select:none;}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
 /* DESKTOP */
 #desktop{flex:1;position:relative;overflow:hidden;background:#3a6ea5 url('bliss.png') center/cover no-repeat;}
@@ -20,7 +22,7 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .icon{position:absolute;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:6px;border-radius:3px;width:72px;}
 .icon:hover{background:rgba(255,255,255,.15);}
 .icon-img{font-size:32px;line-height:1;}
-.icon-label{font-size:10px;color:#fff;text-align:center;text-shadow:1px 1px 2px rgba(0,0,0,.8);line-height:1.2;}
+.icon-label{font-size:10px;color:#fff;text-align:center;line-height:1.2;background:rgba(0,0,0,.55);padding:1px 4px;border-radius:2px;text-shadow:1px 1px 1px rgba(0,0,0,.9);}
 
 /* WINDOWS */
 .win{position:absolute;display:flex;flex-direction:column;border:1px solid #0a3080;box-shadow:2px 2px 8px rgba(0,0,0,.5);min-width:320px;min-height:200px;border-radius:4px 4px 0 0;overflow:hidden;}
@@ -30,7 +32,8 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .win-icon{font-size:14px;margin-right:6px;}
 .win-title{flex:1;font-size:11px;font-weight:bold;color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.4);}
 .win-btns{display:flex;gap:2px;}
-.win-btn{width:21px;height:19px;border-radius:3px;border:1px solid rgba(255,255,255,.3);font-size:11px;font-weight:bold;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.1));}
+.win-btn{width:21px;height:19px;border-radius:3px;border:1px solid rgba(255,255,255,.3);font-size:11px;font-weight:bold;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.1));font-family:inherit;padding:0;}
+.win-btn[disabled],.win-btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed;}
 .win-btn:hover{background:rgba(255,255,255,.4);}
 .win-btn.close{background:linear-gradient(180deg,#f05050,#c02020);}
 .win-btn.close:hover{background:linear-gradient(180deg,#ff6060,#e03030);}
@@ -53,7 +56,7 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .xls-table tr:nth-child(even) td{background:#F0F0F8;}
 .xls-table td.num{font-weight:bold;color:#002868;font-size:14px;text-align:right;}
 .xls-table td.gold{font-weight:bold;color:#C49B00;font-size:14px;text-align:right;}
-.xls-table td.dim{color:#AAAAAA;font-size:14px;text-align:right;}
+.xls-table td.dim{color:#767676;font-size:14px;text-align:right;}
 .xls-table th.row-hdr{background:#C8C8C8;width:28px;font-size:10px;color:#333;}
 .row-num{background:#D4D0C8;border:1px solid #999;padding:3px 4px;text-align:center;font-size:10px;color:#333;}
 
@@ -67,12 +70,12 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .ppt-col.before{background:#F5F5F5;border-left:3px solid #AAAAAA;}
 .ppt-col.after{background:#EEF8EE;border-left:3px solid #002868;}
 .ppt-col-hdr{font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
-.ppt-col.before .ppt-col-hdr{color:#888;}
+.ppt-col.before .ppt-col-hdr{color:#666;}
 .ppt-col.after .ppt-col-hdr{color:#002868;}
 .ppt-tag{display:inline-block;background:#002868;color:#F5C82C;font-size:9px;font-weight:bold;padding:1px 6px;margin-bottom:6px;}
 .progress-xp{border:2px inset #888;height:16px;background:#fff;margin:6px 0;}
 .progress-xp-fill{height:100%;background:linear-gradient(180deg,#6EA8E8,#2060CC);transition:width 1.5s ease;}
-.ppt-felt{font-size:9px;color:#888;font-style:italic;margin-top:6px;padding-top:4px;border-top:1px dashed #CCC;}
+.ppt-felt{font-size:9px;color:#666;font-style:italic;margin-top:6px;padding-top:4px;border-top:1px dashed #CCC;}
 
 /* TASKBAR */
 #taskbar{height:32px;background:linear-gradient(180deg,#245EDC 0%,#1951B8 40%,#1748A8 100%);border-top:1px solid #0a3080;display:flex;align-items:center;gap:2px;padding:0 2px;flex-shrink:0;}
@@ -80,7 +83,7 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 #start-btn:hover{filter:brightness(1.1);}
 .start-star{width:18px;}
 .taskbar-divider{width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 4px;}
-.tb-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:2px;color:#fff;font-size:10px;padding:2px 8px;cursor:pointer;height:22px;display:flex;align-items:center;gap:5px;max-width:140px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.tb-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:2px;color:#fff;font-size:10px;padding:2px 8px;cursor:pointer;height:22px;display:flex;align-items:center;gap:5px;max-width:140px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:inherit;}
 .tb-btn.active{background:rgba(0,0,0,.2);border:1px inset rgba(0,0,0,.3);}
 .tb-btn:hover{background:rgba(255,255,255,.2);}
 .tb-icon{font-size:13px;}
@@ -103,7 +106,7 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 #start-menu.open{display:block;}
 .sm-header{background:linear-gradient(90deg,#3070E0,#1A50CC);padding:10px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #4080E8;}
 .sm-header-text{color:#fff;font-size:12px;font-weight:bold;line-height:1.3;}
-.sm-header-sub{color:rgba(255,255,255,.6);font-size:10px;}
+.sm-header-sub{color:rgba(255,255,255,.85);font-size:10px;}
 .sm-item{padding:6px 14px;font-size:11px;color:#fff;cursor:pointer;display:flex;align-items:center;gap:8px;}
 .sm-item:hover{background:rgba(255,255,255,.15);}
 .sm-item .sm-ico{font-size:16px;width:20px;text-align:center;}
@@ -118,10 +121,10 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 
 /* PAINT */
 .paint-toolbar{background:#ECE9D8;border-bottom:1px solid #AAA;padding:4px;display:flex;gap:4px;flex-shrink:0;}
-.paint-tool{width:24px;height:24px;background:linear-gradient(180deg,#fff,#D4D0C8);border:1px outset #999;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.paint-tool{width:24px;height:24px;background:linear-gradient(180deg,#fff,#D4D0C8);border:1px outset #999;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-family:inherit;padding:0;}
 .paint-tool.active{border:1px inset #999;background:#B8B4AA;}
 .paint-colors{display:flex;flex-wrap:wrap;gap:2px;padding:4px;background:#ECE9D8;border-bottom:1px solid #AAA;flex-shrink:0;}
-.paint-color{width:18px;height:18px;border:1px solid #666;cursor:pointer;}
+.paint-color{width:18px;height:18px;border:1px solid #666;cursor:pointer;padding:0;font-size:0;line-height:0;}
 .paint-color.active{outline:2px solid #000;outline-offset:1px;}
 .paint-canvas-wrap{background:#808080;padding:8px;flex:1;overflow:auto;}
 .paint-canvas{background:#fff;cursor:crosshair;display:block;border:1px solid #000;}
@@ -131,9 +134,10 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .mines-body{background:#C0C0C0;padding:8px;height:100%;display:flex;flex-direction:column;gap:6px;align-items:center;}
 .mines-header{width:100%;background:#C0C0C0;border:2px inset #FFF;padding:4px 8px;display:flex;justify-content:space-between;align-items:center;}
 .mines-counter{background:#000;color:#F00;font-family:'Courier New',monospace;font-size:18px;font-weight:bold;padding:2px 6px;min-width:48px;text-align:center;letter-spacing:2px;}
-.mines-face{width:28px;height:28px;background:#C0C0C0;border:2px outset #FFF;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.mines-face{width:28px;height:28px;background:#C0C0C0;border:2px outset #FFF;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;padding:0;}
 .mines-face:active{border:2px inset #FFF;}
 .mines-grid{border:3px inset #FFF;background:#C0C0C0;display:grid;grid-template-columns:repeat(9,24px);grid-template-rows:repeat(9,24px);gap:0;}
+.mines-row{display:contents;}
 .mines-cell{width:24px;height:24px;border:2px outset #FFF;background:#C0C0C0;font-weight:bold;font-size:14px;font-family:'Courier New',monospace;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;}
 .mines-cell.revealed{border:1px solid #808080;background:#BDBDBD;cursor:default;}
 .mines-cell.mine{background:#F00;}
@@ -200,59 +204,59 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 <div id="desktop">
 
   <!-- DESKTOP ICONS -->
-  <div class="icon" style="left:16px;top:16px;" ondblclick="openWin('win-welcome')">
-    <div class="icon-img">📄</div>
+  <div class="icon" style="left:16px;top:16px;" role="button" tabindex="0" onclick="openWin('win-welcome')" onkeydown="iconKey(event,'win-welcome')" aria-label="Open Welcome.txt">
+    <div class="icon-img" aria-hidden="true">📄</div>
     <div class="icon-label">Welcome.txt</div>
   </div>
-  <div class="icon" style="left:16px;top:100px;" ondblclick="openWin('win-services')">
-    <div class="icon-img">📊</div>
+  <div class="icon" style="left:16px;top:100px;" role="button" tabindex="0" onclick="openWin('win-services')" onkeydown="iconKey(event,'win-services')" aria-label="Open Services Overview document">
+    <div class="icon-img" aria-hidden="true">📊</div>
     <div class="icon-label">Services Overview.doc</div>
   </div>
-  <div class="icon" style="left:16px;top:184px;" ondblclick="openWin('win-stats')">
-    <div class="icon-img">📈</div>
+  <div class="icon" style="left:16px;top:184px;" role="button" tabindex="0" onclick="openWin('win-stats')" onkeydown="iconKey(event,'win-stats')" aria-label="Open City Stats Q2 2026 spreadsheet">
+    <div class="icon-img" aria-hidden="true">📈</div>
     <div class="icon-label">City Stats Q2 2026.xls</div>
   </div>
-  <div class="icon" style="left:16px;top:268px;" ondblclick="openWin('win-changes')">
-    <div class="icon-img">📋</div>
+  <div class="icon" style="left:16px;top:268px;" role="button" tabindex="0" onclick="openWin('win-changes')" onkeydown="iconKey(event,'win-changes')" aria-label="Open What Changed presentation">
+    <div class="icon-img" aria-hidden="true">📋</div>
     <div class="icon-label">What Changed.ppt</div>
   </div>
-  <div class="icon" style="left:16px;top:352px;" ondblclick="openWin('win-readme')">
-    <div class="icon-img">❓</div>
+  <div class="icon" style="left:16px;top:352px;" role="button" tabindex="0" onclick="openWin('win-readme')" onkeydown="iconKey(event,'win-readme')" aria-label="Open ReadMe First">
+    <div class="icon-img" aria-hidden="true">❓</div>
     <div class="icon-label">ReadMe_First.txt</div>
   </div>
 
   <!-- SECOND COLUMN: FUN APPS -->
-  <div class="icon" style="left:104px;top:16px;" ondblclick="openWin('win-paint')">
-    <div class="icon-img">🎨</div>
+  <div class="icon" style="left:104px;top:16px;" role="button" tabindex="0" onclick="openWin('win-paint')" onkeydown="iconKey(event,'win-paint')" aria-label="Open Paint">
+    <div class="icon-img" aria-hidden="true">🎨</div>
     <div class="icon-label">Paint</div>
   </div>
-  <div class="icon" style="left:104px;top:100px;" ondblclick="openWin('win-mines')">
-    <div class="icon-img">💣</div>
+  <div class="icon" style="left:104px;top:100px;" role="button" tabindex="0" onclick="openWin('win-mines')" onkeydown="iconKey(event,'win-mines')" aria-label="Open Minesweeper">
+    <div class="icon-img" aria-hidden="true">💣</div>
     <div class="icon-label">Minesweeper</div>
   </div>
-  <div class="icon" style="left:104px;top:184px;" ondblclick="openWin('win-winamp')">
-    <div class="icon-img">🎵</div>
+  <div class="icon" style="left:104px;top:184px;" role="button" tabindex="0" onclick="openWin('win-winamp')" onkeydown="iconKey(event,'win-winamp')" aria-label="Open SBWinamp">
+    <div class="icon-img" aria-hidden="true">🎵</div>
     <div class="icon-label">SBWinamp</div>
   </div>
-  <div class="icon" style="left:104px;top:268px;" ondblclick="openWin('win-share')">
-    <div class="icon-img">🌐</div>
+  <div class="icon" style="left:104px;top:268px;" role="button" tabindex="0" onclick="openWin('win-share')" onkeydown="iconKey(event,'win-share')" aria-label="Open SBShare">
+    <div class="icon-img" aria-hidden="true">🌐</div>
     <div class="icon-label">SBShare</div>
   </div>
 
   <!-- WINDOW: WELCOME -->
-  <div class="win focused" id="win-welcome" style="left:100px;top:40px;width:480px;height:300px;z-index:10;">
+  <div class="win focused" id="win-welcome" role="dialog" aria-labelledby="win-welcome-title" style="left:100px;top:40px;width:480px;height:300px;z-index:10;">
     <div class="win-titlebar" onmousedown="startDrag(event,'win-welcome')">
-      <span class="win-icon">📄</span>
-      <span class="win-title">Welcome.txt - City Notepad</span>
+      <span class="win-icon" aria-hidden="true">📄</span>
+      <span class="win-title" id="win-welcome-title">Welcome.txt - City Notepad</span>
       <div class="win-btns">
-        <div class="win-btn" onclick="minimizeWin('win-welcome')">−</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn close" onclick="closeWin('win-welcome')">✕</div>
+        <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-welcome')">−</button>
+        <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
+        <button class="win-btn close" aria-label="Close" onclick="closeWin('win-welcome')">✕</button>
       </div>
     </div>
-    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">Format</span><span class="win-menu">View</span><span class="win-menu">Help</span></div>
+    <div class="win-menubar" aria-hidden="true"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">Format</span><span class="win-menu">View</span><span class="win-menu">Help</span></div>
     <div class="win-body">
-      <div class="notepad-body" contenteditable="true">CITY OF SOUTH BEND :: INNOVATION & TECHNOLOGY
+      <div class="notepad-body" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Welcome notepad — editable">CITY OF SOUTH BEND :: INNOVATION & TECHNOLOGY
 Digital Services — State of the City Report
 Q2 2026
 ================================================
@@ -284,24 +288,24 @@ NOTE: This document last saved 6/30/2026 11:58 PM
   </div>
 
   <!-- WINDOW: SERVICES -->
-  <div class="win" id="win-services" style="left:160px;top:80px;width:600px;height:380px;z-index:8;display:none;">
+  <div class="win" id="win-services" role="dialog" aria-labelledby="win-services-title" style="left:160px;top:80px;width:600px;height:380px;z-index:8;display:none;">
     <div class="win-titlebar" onmousedown="startDrag(event,'win-services')">
-      <span class="win-icon">📊</span>
-      <span class="win-title">Services Overview.doc - City Docs</span>
+      <span class="win-icon" aria-hidden="true">📊</span>
+      <span class="win-title" id="win-services-title">Services Overview.doc - City Docs</span>
       <div class="win-btns">
-        <div class="win-btn" onclick="minimizeWin('win-services')">−</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn close" onclick="closeWin('win-services')">✕</div>
+        <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-services')">−</button>
+        <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
+        <button class="win-btn close" aria-label="Close" onclick="closeWin('win-services')">✕</button>
       </div>
     </div>
-    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Insert</span><span class="win-menu">Format</span><span class="win-menu">Tools</span><span class="win-menu">Table</span><span class="win-menu">Help</span></div>
-    <div class="xls-toolbar">
-      <button class="xls-btn">Normal ▾</button>
-      <button class="xls-btn">Merriweather ▾</button>
-      <button class="xls-btn">12 ▾</button>
-      <button class="xls-btn"><b>B</b></button>
-      <button class="xls-btn"><i>I</i></button>
-      <button class="xls-btn"><u>U</u></button>
+    <div class="win-menubar" aria-hidden="true"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Insert</span><span class="win-menu">Format</span><span class="win-menu">Tools</span><span class="win-menu">Table</span><span class="win-menu">Help</span></div>
+    <div class="xls-toolbar" aria-hidden="true">
+      <button class="xls-btn" tabindex="-1">Normal ▾</button>
+      <button class="xls-btn" tabindex="-1">Merriweather ▾</button>
+      <button class="xls-btn" tabindex="-1">12 ▾</button>
+      <button class="xls-btn" tabindex="-1"><b>B</b></button>
+      <button class="xls-btn" tabindex="-1"><i>I</i></button>
+      <button class="xls-btn" tabindex="-1"><u>U</u></button>
     </div>
     <div class="win-body">
       <div style="padding:16px;background:#fff;">
@@ -323,18 +327,18 @@ NOTE: This document last saved 6/30/2026 11:58 PM
   </div>
 
   <!-- WINDOW: STATS -->
-  <div class="win" id="win-stats" style="left:220px;top:40px;width:560px;height:360px;z-index:9;display:none;">
+  <div class="win" id="win-stats" role="dialog" aria-labelledby="win-stats-title" style="left:220px;top:40px;width:560px;height:360px;z-index:9;display:none;">
     <div class="win-titlebar" onmousedown="startDrag(event,'win-stats')">
-      <span class="win-icon">📈</span>
-      <span class="win-title">City Stats Q2 2026.xls - City Sheets</span>
+      <span class="win-icon" aria-hidden="true">📈</span>
+      <span class="win-title" id="win-stats-title">City Stats Q2 2026.xls - City Sheets</span>
       <div class="win-btns">
-        <div class="win-btn" onclick="minimizeWin('win-stats')">−</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn close" onclick="closeWin('win-stats')">✕</div>
+        <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-stats')">−</button>
+        <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
+        <button class="win-btn close" aria-label="Close" onclick="closeWin('win-stats')">✕</button>
       </div>
     </div>
-    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Insert</span><span class="win-menu">Format</span><span class="win-menu">Tools</span><span class="win-menu">Data</span><span class="win-menu">Help</span></div>
-    <div class="xls-toolbar">
+    <div class="win-menubar" aria-hidden="true"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Insert</span><span class="win-menu">Format</span><span class="win-menu">Tools</span><span class="win-menu">Data</span><span class="win-menu">Help</span></div>
+    <div class="xls-toolbar" aria-hidden="true">
       <span style="border:1px inset #999;padding:2px 8px;background:#fff;font-size:11px;min-width:60px;display:inline-block;">A1</span>
       <span style="margin:0 4px;color:#888;">fx</span>
       <span style="border:1px inset #999;padding:2px 8px;background:#fff;font-size:11px;flex:1;display:inline-block;">="Digital City by the Numbers"</span>
@@ -359,17 +363,17 @@ NOTE: This document last saved 6/30/2026 11:58 PM
   </div>
 
   <!-- WINDOW: CHANGES -->
-  <div class="win" id="win-changes" style="left:140px;top:60px;width:580px;height:420px;z-index:7;display:none;">
+  <div class="win" id="win-changes" role="dialog" aria-labelledby="win-changes-title" style="left:140px;top:60px;width:580px;height:420px;z-index:7;display:none;">
     <div class="win-titlebar" onmousedown="startDrag(event,'win-changes')">
-      <span class="win-icon">📋</span>
-      <span class="win-title">What Changed.ppt - City Slides</span>
+      <span class="win-icon" aria-hidden="true">📋</span>
+      <span class="win-title" id="win-changes-title">What Changed.ppt - City Slides</span>
       <div class="win-btns">
-        <div class="win-btn" onclick="minimizeWin('win-changes')">−</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn close" onclick="closeWin('win-changes')">✕</div>
+        <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-changes')">−</button>
+        <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
+        <button class="win-btn close" aria-label="Close" onclick="closeWin('win-changes')">✕</button>
       </div>
     </div>
-    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Insert</span><span class="win-menu">Format</span><span class="win-menu">Slide Show</span><span class="win-menu">Help</span></div>
+    <div class="win-menubar" aria-hidden="true"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Insert</span><span class="win-menu">Format</span><span class="win-menu">Slide Show</span><span class="win-menu">Help</span></div>
     <div class="win-body ppt-body">
 
       <div class="ppt-slide">
@@ -409,19 +413,19 @@ NOTE: This document last saved 6/30/2026 11:58 PM
   </div>
 
   <!-- WINDOW: README -->
-  <div class="win" id="win-readme" style="left:180px;top:100px;width:360px;height:240px;z-index:6;display:none;">
+  <div class="win" id="win-readme" role="dialog" aria-labelledby="win-readme-title" style="left:180px;top:100px;width:360px;height:240px;z-index:6;display:none;">
     <div class="win-titlebar" onmousedown="startDrag(event,'win-readme')">
-      <span class="win-icon">❓</span>
-      <span class="win-title">ReadMe_First.txt - City Notepad</span>
+      <span class="win-icon" aria-hidden="true">❓</span>
+      <span class="win-title" id="win-readme-title">ReadMe_First.txt - City Notepad</span>
       <div class="win-btns">
-        <div class="win-btn" onclick="minimizeWin('win-readme')">−</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn close" onclick="closeWin('win-readme')">✕</div>
+        <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-readme')">−</button>
+        <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
+        <button class="win-btn close" aria-label="Close" onclick="closeWin('win-readme')">✕</button>
       </div>
     </div>
-    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">Format</span><span class="win-menu">Help</span></div>
+    <div class="win-menubar" aria-hidden="true"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">Format</span><span class="win-menu">Help</span></div>
     <div class="win-body">
-      <div class="notepad-body" contenteditable="true">README — Digital Services Q2 2026 Report
+      <div class="notepad-body" contenteditable="true" role="textbox" aria-multiline="true" aria-label="ReadMe notepad — editable">README — Digital Services Q2 2026 Report
 
 Yes, we know.
 
@@ -446,96 +450,97 @@ The data is real.
   </div>
 
   <!-- WINDOW: PAINT -->
-  <div class="win" id="win-paint" style="left:240px;top:60px;width:520px;height:400px;z-index:5;display:none;">
+  <div class="win" id="win-paint" role="dialog" aria-labelledby="win-paint-title" style="left:240px;top:60px;width:520px;height:400px;z-index:5;display:none;">
     <div class="win-titlebar" onmousedown="startDrag(event,'win-paint')">
-      <span class="win-icon">🎨</span>
-      <span class="win-title">untitled_citymap.bmp - Paint</span>
+      <span class="win-icon" aria-hidden="true">🎨</span>
+      <span class="win-title" id="win-paint-title">untitled_citymap.bmp - Paint</span>
       <div class="win-btns">
-        <div class="win-btn" onclick="minimizeWin('win-paint')">−</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn close" onclick="closeWin('win-paint')">✕</div>
+        <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-paint')">−</button>
+        <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
+        <button class="win-btn close" aria-label="Close" onclick="closeWin('win-paint')">✕</button>
       </div>
     </div>
-    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Image</span><span class="win-menu">Colors</span><span class="win-menu">Help</span></div>
-    <div class="paint-toolbar">
-      <div class="paint-tool active" data-tool="pencil" title="Pencil">✏️</div>
-      <div class="paint-tool" data-tool="eraser" title="Eraser">🧹</div>
-      <div class="paint-tool" data-tool="brush" title="Brush">🖌️</div>
-      <div class="paint-tool" data-tool="clear" title="Clear canvas">🗑️</div>
-      <div class="paint-tool" data-tool="save" title="Save (not really)">💾</div>
+    <div class="win-menubar" aria-hidden="true"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">View</span><span class="win-menu">Image</span><span class="win-menu">Colors</span><span class="win-menu">Help</span></div>
+    <div class="paint-toolbar" role="toolbar" aria-label="Paint tools">
+      <button type="button" class="paint-tool active" data-tool="pencil" aria-label="Pencil tool" aria-pressed="true"><span aria-hidden="true">✏️</span></button>
+      <button type="button" class="paint-tool" data-tool="eraser" aria-label="Eraser tool" aria-pressed="false"><span aria-hidden="true">🧹</span></button>
+      <button type="button" class="paint-tool" data-tool="brush" aria-label="Brush tool" aria-pressed="false"><span aria-hidden="true">🖌️</span></button>
+      <button type="button" class="paint-tool" data-tool="clear" aria-label="Clear canvas"><span aria-hidden="true">🗑️</span></button>
+      <button type="button" class="paint-tool" data-tool="save" aria-label="Save (decorative)"><span aria-hidden="true">💾</span></button>
     </div>
-    <div class="paint-colors" id="paint-colors"></div>
+    <div class="paint-colors" id="paint-colors" role="toolbar" aria-label="Color palette"></div>
     <div class="paint-canvas-wrap">
-      <canvas id="paint-canvas" class="paint-canvas" width="480" height="240"></canvas>
+      <canvas id="paint-canvas" class="paint-canvas" width="480" height="240" aria-label="Drawing canvas. Mouse-only. The artwork here is decorative."></canvas>
     </div>
-    <div class="paint-status" id="paint-status">For Help, click Help Topics on the Help Menu.</div>
+    <div class="paint-status" id="paint-status" aria-live="polite">For Help, click Help Topics on the Help Menu.</div>
   </div>
 
   <!-- WINDOW: MINESWEEPER -->
-  <div class="win" id="win-mines" style="left:280px;top:40px;width:270px;height:340px;z-index:5;display:none;">
+  <div class="win" id="win-mines" role="dialog" aria-labelledby="win-mines-title" style="left:280px;top:40px;width:270px;height:340px;z-index:5;display:none;">
     <div class="win-titlebar" onmousedown="startDrag(event,'win-mines')">
-      <span class="win-icon">💣</span>
-      <span class="win-title">Minesweeper</span>
+      <span class="win-icon" aria-hidden="true">💣</span>
+      <span class="win-title" id="win-mines-title">Minesweeper</span>
       <div class="win-btns">
-        <div class="win-btn" onclick="minimizeWin('win-mines')">−</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn close" onclick="closeWin('win-mines')">✕</div>
+        <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-mines')">−</button>
+        <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
+        <button class="win-btn close" aria-label="Close" onclick="closeWin('win-mines')">✕</button>
       </div>
     </div>
-    <div class="win-menubar"><span class="win-menu" onclick="newMinesGame()">Game</span><span class="win-menu">Help</span></div>
+    <div class="win-menubar" aria-hidden="true"><span class="win-menu" onclick="newMinesGame()">Game</span><span class="win-menu">Help</span></div>
     <div class="win-body mines-body">
       <div class="mines-header">
-        <div class="mines-counter" id="mines-counter">010</div>
-        <div class="mines-face" id="mines-face" onclick="newMinesGame()">🙂</div>
-        <div class="mines-counter" id="mines-timer">000</div>
+        <div class="mines-counter" id="mines-counter" aria-live="polite" aria-label="Mines remaining">010</div>
+        <button class="mines-face" id="mines-face" onclick="newMinesGame()" aria-label="New game"><span aria-hidden="true">🙂</span></button>
+        <div class="mines-counter" id="mines-timer" aria-label="Timer">000</div>
       </div>
-      <div class="mines-grid" id="mines-grid"></div>
+      <div class="mines-grid" id="mines-grid" role="grid" aria-label="Minesweeper board, 9 by 9, 10 mines. Use arrow keys to move, Enter or Space to reveal, F to flag."></div>
     </div>
   </div>
 
   <!-- WINDOW: WINAMP -->
-  <div class="win" id="win-winamp" style="left:300px;top:80px;width:300px;height:360px;z-index:5;display:none;">
+  <div class="win" id="win-winamp" role="dialog" aria-labelledby="win-winamp-title" style="left:300px;top:80px;width:300px;height:360px;z-index:5;display:none;">
     <div class="win-titlebar" onmousedown="startDrag(event,'win-winamp')">
-      <span class="win-icon">🎵</span>
-      <span class="win-title">SBWinamp 2.95 — "It really kicks the potholes"</span>
+      <span class="win-icon" aria-hidden="true">🎵</span>
+      <span class="win-title" id="win-winamp-title">SBWinamp 2.95 — "It really kicks the potholes"</span>
       <div class="win-btns">
-        <div class="win-btn" onclick="minimizeWin('win-winamp')">−</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn close" onclick="closeWin('win-winamp')">✕</div>
+        <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-winamp')">−</button>
+        <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
+        <button class="win-btn close" aria-label="Close" onclick="closeWin('win-winamp')">✕</button>
       </div>
     </div>
     <div class="win-body winamp-body">
-      <div class="winamp-display">
+      <div class="winamp-display" role="status" aria-live="polite" aria-atomic="true">
         <div class="winamp-track"><span class="winamp-track-scroll" id="winamp-track">♪ CITY COUNCIL MEETING VOL. 12 — "The Snow Plow Sonata" ♪</span></div>
         <div class="winamp-meta" id="winamp-meta">03:47 / 42:18  ·  128 kbps  ·  44 kHz  ·  stereo</div>
       </div>
-      <div class="winamp-eq" id="winamp-eq"></div>
-      <div class="winamp-controls">
-        <button class="winamp-btn" onclick="winampPrev()">⏮</button>
-        <button class="winamp-btn" onclick="winampToggle()" id="winamp-play">▶</button>
-        <button class="winamp-btn" onclick="winampNext()">⏭</button>
-        <button class="winamp-btn" onclick="winampShuffle()" title="Shuffle">🔀</button>
+      <div class="winamp-eq" id="winamp-eq" aria-hidden="true"></div>
+      <div class="winamp-controls" role="group" aria-label="Playback controls">
+        <button class="winamp-btn" onclick="winampPrev()" aria-label="Previous track"><span aria-hidden="true">⏮</span></button>
+        <button class="winamp-btn" onclick="winampToggle()" id="winamp-play" aria-label="Play or pause"><span aria-hidden="true">▶</span></button>
+        <button class="winamp-btn" onclick="winampNext()" aria-label="Next track"><span aria-hidden="true">⏭</span></button>
+        <button class="winamp-btn" onclick="winampShuffle()" aria-label="Shuffle"><span aria-hidden="true">🔀</span></button>
       </div>
       <div class="winamp-playlist" id="winamp-playlist"></div>
     </div>
   </div>
 
   <!-- WINDOW: SBSHARE -->
-  <div class="win" id="win-share" style="left:200px;top:30px;width:580px;height:400px;z-index:5;display:none;">
+  <div class="win" id="win-share" role="dialog" aria-labelledby="win-share-title" style="left:200px;top:30px;width:580px;height:400px;z-index:5;display:none;">
     <div class="win-titlebar" onmousedown="startDrag(event,'win-share')">
-      <span class="win-icon">🌐</span>
-      <span class="win-title">SBShare — Municipal P2P Network</span>
+      <span class="win-icon" aria-hidden="true">🌐</span>
+      <span class="win-title" id="win-share-title">SBShare — Municipal P2P Network</span>
       <div class="win-btns">
-        <div class="win-btn" onclick="minimizeWin('win-share')">−</div>
-        <div class="win-btn">□</div>
-        <div class="win-btn close" onclick="closeWin('win-share')">✕</div>
+        <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-share')">−</button>
+        <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
+        <button class="win-btn close" aria-label="Close" onclick="closeWin('win-share')">✕</button>
       </div>
     </div>
-    <div class="win-menubar"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">Network</span><span class="win-menu">Tools</span><span class="win-menu">Help</span></div>
+    <div class="win-menubar" aria-hidden="true"><span class="win-menu">File</span><span class="win-menu">Edit</span><span class="win-menu">Network</span><span class="win-menu">Tools</span><span class="win-menu">Help</span></div>
     <div class="share-toolbar">
-      <input class="share-search" id="share-search" placeholder="Search the Municipal Network..." oninput="filterShare()">
-      <button class="share-btn" onclick="filterShare()">🔍 Search</button>
-      <button class="share-btn">👥 Users</button>
+      <label for="share-search" class="sr-only">Search the Municipal Network</label>
+      <input class="share-search" id="share-search" type="search" placeholder="Search the Municipal Network..." oninput="filterShare()">
+      <button class="share-btn" onclick="filterShare()"><span aria-hidden="true">🔍</span> Search</button>
+      <button class="share-btn" aria-disabled="true"><span aria-hidden="true">👥</span> Users</button>
     </div>
     <div class="share-stats">
       <span><span class="online">● ONLINE</span> &nbsp;·&nbsp; Connected to SBShare @ southbendindiana.gov</span>
@@ -553,8 +558,8 @@ The data is real.
   <div id="screensaver"><div class="ss-text" id="ss-text">CITY OF SOUTH BEND</div></div>
 
   <!-- CLIPPY -->
-  <div id="clippy">
-    <div class="clippy-bubble">
+  <div id="clippy" role="region" aria-label="Helpful tips assistant">
+    <div class="clippy-bubble" role="status" aria-live="polite">
       <div id="clippy-bubble"><b>It looks like you're viewing a city services report.</b><br><br>
       Did you know South Bend processes <b>10,000 form submissions</b> per quarter — without a single sheet of paper?</div>
       <div class="clippy-actions">
@@ -562,30 +567,30 @@ The data is real.
         <button class="clippy-btn" id="clippy-dismiss" onclick="dismissClippy()">Dismiss ✕</button>
       </div>
     </div>
-    <div class="clippy-mascot" id="clippy-mascot" title="Click for a tip!">⭐</div>
+    <button class="clippy-mascot" id="clippy-mascot" onclick="nextClippyTip()" aria-label="Next tip"><span aria-hidden="true">⭐</span></button>
   </div>
 
   <!-- START MENU -->
-  <div id="start-menu">
+  <div id="start-menu" role="menu" aria-label="Start menu">
     <div class="sm-header">
       <div>
         <div class="sm-header-text">Digital Services</div>
         <div class="sm-header-sub">City of South Bend · Q2 2026</div>
       </div>
     </div>
-    <div class="sm-item" onclick="openWin('win-welcome');closeStart()"><span class="sm-ico">📄</span> Welcome.txt</div>
-    <div class="sm-item" onclick="openWin('win-services');closeStart()"><span class="sm-ico">📊</span> Services Overview.doc</div>
-    <div class="sm-item" onclick="openWin('win-stats');closeStart()"><span class="sm-ico">📈</span> City Stats Q2 2026.xls</div>
-    <div class="sm-item" onclick="openWin('win-changes');closeStart()"><span class="sm-ico">📋</span> What Changed.ppt</div>
-    <div class="sm-item" onclick="openWin('win-readme');closeStart()"><span class="sm-ico">❓</span> ReadMe_First.txt</div>
-    <div class="sm-divider"></div>
-    <div class="sm-item" onclick="openWin('win-paint');closeStart()"><span class="sm-ico">🎨</span> Paint</div>
-    <div class="sm-item" onclick="openWin('win-mines');closeStart()"><span class="sm-ico">💣</span> Minesweeper</div>
-    <div class="sm-item" onclick="openWin('win-winamp');closeStart()"><span class="sm-ico">🎵</span> SBWinamp</div>
-    <div class="sm-item" onclick="openWin('win-share');closeStart()"><span class="sm-ico">🌐</span> SBShare</div>
-    <div class="sm-divider"></div>
-    <div class="sm-item"><span class="sm-ico">🌐</span> southbendindiana.gov</div>
-    <div class="sm-item"><span class="sm-ico">📧</span> Contact the Team</div>
+    <div class="sm-item" role="menuitem" tabindex="0" onclick="openWin('win-welcome');closeStart()" onkeydown="smKey(event,'win-welcome')"><span class="sm-ico" aria-hidden="true">📄</span> Welcome.txt</div>
+    <div class="sm-item" role="menuitem" tabindex="0" onclick="openWin('win-services');closeStart()" onkeydown="smKey(event,'win-services')"><span class="sm-ico" aria-hidden="true">📊</span> Services Overview.doc</div>
+    <div class="sm-item" role="menuitem" tabindex="0" onclick="openWin('win-stats');closeStart()" onkeydown="smKey(event,'win-stats')"><span class="sm-ico" aria-hidden="true">📈</span> City Stats Q2 2026.xls</div>
+    <div class="sm-item" role="menuitem" tabindex="0" onclick="openWin('win-changes');closeStart()" onkeydown="smKey(event,'win-changes')"><span class="sm-ico" aria-hidden="true">📋</span> What Changed.ppt</div>
+    <div class="sm-item" role="menuitem" tabindex="0" onclick="openWin('win-readme');closeStart()" onkeydown="smKey(event,'win-readme')"><span class="sm-ico" aria-hidden="true">❓</span> ReadMe_First.txt</div>
+    <div class="sm-divider" role="separator"></div>
+    <div class="sm-item" role="menuitem" tabindex="0" onclick="openWin('win-paint');closeStart()" onkeydown="smKey(event,'win-paint')"><span class="sm-ico" aria-hidden="true">🎨</span> Paint</div>
+    <div class="sm-item" role="menuitem" tabindex="0" onclick="openWin('win-mines');closeStart()" onkeydown="smKey(event,'win-mines')"><span class="sm-ico" aria-hidden="true">💣</span> Minesweeper</div>
+    <div class="sm-item" role="menuitem" tabindex="0" onclick="openWin('win-winamp');closeStart()" onkeydown="smKey(event,'win-winamp')"><span class="sm-ico" aria-hidden="true">🎵</span> SBWinamp</div>
+    <div class="sm-item" role="menuitem" tabindex="0" onclick="openWin('win-share');closeStart()" onkeydown="smKey(event,'win-share')"><span class="sm-ico" aria-hidden="true">🌐</span> SBShare</div>
+    <div class="sm-divider" role="separator"></div>
+    <div class="sm-item" role="menuitem" tabindex="0" aria-disabled="true"><span class="sm-ico" aria-hidden="true">🌐</span> southbendindiana.gov</div>
+    <div class="sm-item" role="menuitem" tabindex="0" aria-disabled="true"><span class="sm-ico" aria-hidden="true">📧</span> Contact the Team</div>
     <div class="sm-footer">
       <button class="sm-footer-btn" onclick="closeStart()">Close ✕</button>
     </div>
@@ -595,23 +600,23 @@ The data is real.
 
 <!-- TASKBAR -->
 <div id="taskbar">
-  <button id="start-btn" onclick="toggleStart()">
+  <button id="start-btn" onclick="toggleStart()" aria-expanded="false" aria-haspopup="menu" aria-controls="start-menu">
     <div style="width:26px;height:17px;position:relative;overflow:hidden;flex-shrink:0;border-radius:1px;">
-      <div style="position:absolute;top:.14%;right:58.7%;bottom:0;left:0;"><img src="https://www.figma.com/api/mcp/asset/d7c7d07f-c286-40d3-b51d-b1e4eb7106e4" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
-      <div style="position:absolute;top:0;right:0;bottom:.14%;left:46.64%;"><img src="https://www.figma.com/api/mcp/asset/41c18c25-2d35-463d-8028-2ac6ff8531a8" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
-      <div style="position:absolute;top:.14%;right:41.93%;bottom:.19%;left:39.32%;"><img src="https://www.figma.com/api/mcp/asset/9868411a-2d79-455a-815b-5c091e73116f" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
-      <div style="position:absolute;top:0;right:46.74%;bottom:.13%;left:26.09%;"><img src="https://www.figma.com/api/mcp/asset/3f19ec23-0407-4cd3-b02c-d901c376463b" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
-      <div style="position:absolute;top:0;right:39.31%;bottom:.13%;left:44.03%;"><img src="https://www.figma.com/api/mcp/asset/9249162f-264a-45cd-96a1-ba64d279c10f" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
-      <div style="position:absolute;top:11.98%;right:81.02%;bottom:66.55%;left:7.81%;"><img src="https://www.figma.com/api/mcp/asset/f1f49a3d-261b-40fe-a3b4-813605813861" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></div>
+      <div style="position:absolute;top:.14%;right:58.7%;bottom:0;left:0;"><img src="https://www.figma.com/api/mcp/asset/d7c7d07f-c286-40d3-b51d-b1e4eb7106e4" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt=""></div>
+      <div style="position:absolute;top:0;right:0;bottom:.14%;left:46.64%;"><img src="https://www.figma.com/api/mcp/asset/41c18c25-2d35-463d-8028-2ac6ff8531a8" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt=""></div>
+      <div style="position:absolute;top:.14%;right:41.93%;bottom:.19%;left:39.32%;"><img src="https://www.figma.com/api/mcp/asset/9868411a-2d79-455a-815b-5c091e73116f" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt=""></div>
+      <div style="position:absolute;top:0;right:46.74%;bottom:.13%;left:26.09%;"><img src="https://www.figma.com/api/mcp/asset/3f19ec23-0407-4cd3-b02c-d901c376463b" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt=""></div>
+      <div style="position:absolute;top:0;right:39.31%;bottom:.13%;left:44.03%;"><img src="https://www.figma.com/api/mcp/asset/9249162f-264a-45cd-96a1-ba64d279c10f" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt=""></div>
+      <div style="position:absolute;top:11.98%;right:81.02%;bottom:66.55%;left:7.81%;"><img src="https://www.figma.com/api/mcp/asset/f1f49a3d-261b-40fe-a3b4-813605813861" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt=""></div>
     </div>
     start
   </button>
   <div class="taskbar-divider"></div>
   <div id="tb-btns" style="display:flex;gap:2px;"></div>
-  <div id="tray">
-    <span style="font-size:14px;">🔊</span>
-    <span style="font-size:14px;">🌐</span>
-    <div id="clock">10:24 AM</div>
+  <div id="tray" role="region" aria-label="System tray">
+    <span style="font-size:14px;" aria-hidden="true">🔊</span>
+    <span style="font-size:14px;" aria-hidden="true">🌐</span>
+    <div id="clock" aria-label="Current time">10:24 AM</div>
   </div>
 </div>
 
@@ -628,10 +633,14 @@ function initWin(id){
 
 function addTaskbarBtn(id){
   const names={'win-welcome':'📄 Welcome.txt','win-services':'📊 Services.doc','win-stats':'📈 City Stats.xls','win-changes':'📋 What Changed.ppt','win-readme':'❓ ReadMe.txt','win-paint':'🎨 Paint','win-mines':'💣 Minesweeper','win-winamp':'🎵 SBWinamp','win-share':'🌐 SBShare'};
-  const btn=document.createElement('div');
+  const btn=document.createElement('button');
+  btn.type='button';
   btn.className='tb-btn';
   btn.id='tb-'+id;
-  btn.innerHTML=`<span class="tb-icon">${names[id].split(' ')[0]}</span>${names[id].substring(3)}`;
+  const label=names[id].substring(3);
+  btn.innerHTML=`<span class="tb-icon" aria-hidden="true">${names[id].split(' ')[0]}</span>${label}`;
+  btn.setAttribute('aria-label',`Toggle ${label} window`);
+  btn.setAttribute('aria-pressed','false');
   btn.onclick=()=>toggleWin(id);
   document.getElementById('tb-btns').appendChild(btn);
 }
@@ -642,27 +651,36 @@ function openWin(id){
   w.el.style.zIndex=++topZ;
   w.open=true;w.minimized=false;
   focusWin(id);
-  document.getElementById('tb-'+id).classList.add('active');
+  const tb=document.getElementById('tb-'+id);
+  tb.classList.add('active');tb.setAttribute('aria-pressed','true');
   if(id==='win-stats'&&!wins[id].counted){wins[id].counted=true;setTimeout(runCounters,300);}
   if(id==='win-changes'){setTimeout(()=>{document.getElementById('ppt-progress').style.width='95%';},400);}
   if(id==='win-paint'&&!wins[id].initted){wins[id].initted=true;initPaint();}
   if(id==='win-mines'&&!wins[id].initted){wins[id].initted=true;newMinesGame();}
   if(id==='win-winamp'&&!wins[id].initted){wins[id].initted=true;initWinamp();}
   if(id==='win-share'&&!wins[id].initted){wins[id].initted=true;initShare();}
+  // Move keyboard focus to the close button so the user can interact with the dialog
+  setTimeout(()=>{const close=w.el.querySelector('.win-btn.close');if(close)close.focus();},20);
 }
 
 function closeWin(id){
   const w=wins[id];
   w.el.style.display='none';
   w.open=false;w.minimized=false;
-  document.getElementById('tb-'+id).classList.remove('active');
+  const tb=document.getElementById('tb-'+id);
+  tb.classList.remove('active');tb.setAttribute('aria-pressed','false');
+  // Return focus to the desktop icon that opened this window, if any
+  const icon=document.querySelector(`.icon[onclick="openWin('${id}')"]`);
+  if(icon)icon.focus();
 }
 
 function minimizeWin(id){
   const w=wins[id];
   w.el.style.display='none';
   w.minimized=true;
-  document.getElementById('tb-'+id).classList.remove('active');
+  const tb=document.getElementById('tb-'+id);
+  tb.classList.remove('active');tb.setAttribute('aria-pressed','false');
+  tb.focus();
 }
 
 function toggleWin(id){
@@ -755,8 +773,13 @@ function nextClippyTip(){
 function dismissClippy(){document.getElementById('clippy').style.display='none';}
 setTimeout(()=>document.getElementById('clippy').classList.add('visible'),2500);
 
-function toggleStart(){document.getElementById('start-menu').classList.toggle('open');}
-function closeStart(){document.getElementById('start-menu').classList.remove('open');}
+function iconKey(e,id){if(e.key==='Enter'||e.key===' '){e.preventDefault();openWin(id);}}
+function smKey(e,id){if(e.key==='Enter'||e.key===' '){e.preventDefault();openWin(id);closeStart();}else if(e.key==='Escape'){e.preventDefault();closeStart();document.getElementById('start-btn').focus();}}
+function toggleStart(){const m=document.getElementById('start-menu');const btn=document.getElementById('start-btn');const isOpen=m.classList.toggle('open');btn.setAttribute('aria-expanded',isOpen?'true':'false');if(isOpen){const first=m.querySelector('.sm-item[role="menuitem"]:not([aria-disabled="true"])');if(first)first.focus();}}
+function closeStart(){const m=document.getElementById('start-menu');m.classList.remove('open');document.getElementById('start-btn').setAttribute('aria-expanded','false');}
+// Close start menu on outside click or Escape
+document.addEventListener('click',e=>{const m=document.getElementById('start-menu');if(!m.classList.contains('open'))return;if(!m.contains(e.target)&&e.target.id!=='start-btn'&&!document.getElementById('start-btn').contains(e.target))closeStart();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const m=document.getElementById('start-menu');if(m.classList.contains('open')){closeStart();document.getElementById('start-btn').focus();}}});
 
 // ============ PAINT ============
 const PAINT_COLORS=['#000000','#808080','#800000','#808000','#008000','#008080','#000080','#800080','#808040','#004040','#0080FF','#004080','#4080FF','#400080','#FFFFFF','#C0C0C0','#FF0000','#FFFF00','#00FF00','#00FFFF','#0000FF','#FF00FF','#FFFF80','#00FF80'];
@@ -765,10 +788,13 @@ function initPaint(){
   const pal=document.getElementById('paint-colors');
   pal.innerHTML='';
   PAINT_COLORS.forEach((c,i)=>{
-    const sw=document.createElement('div');
+    const sw=document.createElement('button');
+    sw.type='button';
     sw.className='paint-color'+(c===paintState.color?' active':'');
     sw.style.background=c;
-    sw.onclick=()=>{paintState.color=c;pal.querySelectorAll('.paint-color').forEach(e=>e.classList.remove('active'));sw.classList.add('active');};
+    sw.setAttribute('aria-label','Color '+c);
+    sw.setAttribute('aria-pressed',c===paintState.color?'true':'false');
+    sw.onclick=()=>{paintState.color=c;pal.querySelectorAll('.paint-color').forEach(e=>{e.classList.remove('active');e.setAttribute('aria-pressed','false');});sw.classList.add('active');sw.setAttribute('aria-pressed','true');};
     pal.appendChild(sw);
   });
   const canvas=document.getElementById('paint-canvas');
@@ -781,8 +807,9 @@ function initPaint(){
       if(tool==='clear'){ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);return;}
       if(tool==='save'){document.getElementById('paint-status').textContent='Saved to C:\\citymap\\untitled.bmp (not really)';setTimeout(()=>{document.getElementById('paint-status').textContent='For Help, click Help Topics on the Help Menu.';},2500);return;}
       paintState.tool=tool;
-      document.querySelectorAll('.paint-tool').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.paint-tool').forEach(x=>{x.classList.remove('active');if(x.hasAttribute('aria-pressed'))x.setAttribute('aria-pressed','false');});
       t.classList.add('active');
+      if(t.hasAttribute('aria-pressed'))t.setAttribute('aria-pressed','true');
     };
   });
   function pos(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
@@ -818,19 +845,49 @@ function newMinesGame(){
   document.getElementById('mines-face').textContent='🙂';
   renderMines();
 }
+let minesFocus={r:0,c:0};
 function renderMines(){
   const g=document.getElementById('mines-grid');g.innerHTML='';
-  for(let r=0;r<MINES_SIZE;r++)for(let c=0;c<MINES_SIZE;c++){
-    const cell=document.createElement('div');
-    cell.className='mines-cell';
-    if(mines.revealed[r][c]){
-      cell.classList.add('revealed');
-      if(mines.grid[r][c]===-1){cell.classList.add('mine');cell.textContent='💣';}
-      else if(mines.grid[r][c]>0){cell.dataset.n=mines.grid[r][c];cell.textContent=mines.grid[r][c];}
-    }else if(mines.flagged[r][c]){cell.textContent='🚩';}
-    cell.onclick=e=>{e.preventDefault();revealMines(r,c);};
-    cell.oncontextmenu=e=>{e.preventDefault();flagMines(r,c);};
-    g.appendChild(cell);
+  if(!g.dataset.kbd){g.addEventListener('keydown',minesGridKey);g.dataset.kbd='1';}
+  for(let r=0;r<MINES_SIZE;r++){
+    const row=document.createElement('div');row.className='mines-row';row.setAttribute('role','row');
+    for(let c=0;c<MINES_SIZE;c++){
+      const cell=document.createElement('div');
+      cell.className='mines-cell';
+      cell.setAttribute('role','gridcell');
+      cell.dataset.r=r;cell.dataset.c=c;
+      cell.tabIndex=(r===minesFocus.r&&c===minesFocus.c)?0:-1;
+      let label='';
+      if(mines.revealed[r][c]){
+        cell.classList.add('revealed');
+        if(mines.grid[r][c]===-1){cell.classList.add('mine');cell.textContent='💣';label='Mine';}
+        else if(mines.grid[r][c]>0){cell.dataset.n=mines.grid[r][c];cell.textContent=mines.grid[r][c];label=mines.grid[r][c]+' adjacent mines';}
+        else{label='Empty';}
+      }else if(mines.flagged[r][c]){cell.textContent='🚩';label='Flagged, hidden';}
+      else{label='Hidden';}
+      cell.setAttribute('aria-label',`Row ${r+1}, column ${c+1}, ${label}`);
+      cell.onclick=e=>{e.preventDefault();revealMines(r,c);};
+      cell.oncontextmenu=e=>{e.preventDefault();flagMines(r,c);};
+      row.appendChild(cell);
+    }
+    g.appendChild(row);
+  }
+}
+function minesGridKey(e){
+  const t=e.target;if(!t.classList||!t.classList.contains('mines-cell'))return;
+  const r=+t.dataset.r,c=+t.dataset.c;
+  let nr=r,nc=c,handled=true;
+  if(e.key==='ArrowUp')nr=Math.max(0,r-1);
+  else if(e.key==='ArrowDown')nr=Math.min(MINES_SIZE-1,r+1);
+  else if(e.key==='ArrowLeft')nc=Math.max(0,c-1);
+  else if(e.key==='ArrowRight')nc=Math.min(MINES_SIZE-1,c+1);
+  else if(e.key==='Home')nc=0;
+  else if(e.key==='End')nc=MINES_SIZE-1;
+  else if(e.key==='Enter'||e.key===' '){revealMines(r,c);}
+  else if(e.key==='f'||e.key==='F'){flagMines(r,c);}
+  else handled=false;
+  if(handled){e.preventDefault();
+    if(nr!==r||nc!==c){minesFocus={r:nr,c:nc};const next=document.querySelector(`.mines-cell[data-r="${nr}"][data-c="${nc}"]`);if(next){next.tabIndex=0;t.tabIndex=-1;next.focus();}}
   }
 }
 function startMinesTimer(){if(mines.started)return;mines.started=true;mines.tInt=setInterval(()=>{mines.timer++;document.getElementById('mines-timer').textContent=String(Math.min(mines.timer,999)).padStart(3,'0');},1000);}
@@ -862,7 +919,18 @@ function initWinamp(){
   const eq=document.getElementById('winamp-eq');eq.innerHTML='';
   for(let i=0;i<16;i++){const b=document.createElement('div');b.className='winamp-bar';b.style.height='8px';eq.appendChild(b);}
   const pl=document.getElementById('winamp-playlist');pl.innerHTML='';
-  WINAMP_TRACKS.forEach((t,i)=>{const s=document.createElement('div');s.className='winamp-song'+(i===winampIdx?' playing':'');s.textContent=`${String(i+1).padStart(2,'0')}. ${t.title}  [${t.len}]`;s.onclick=()=>{winampIdx=i;winampUpdate();};pl.appendChild(s);});
+  pl.setAttribute('role','listbox');pl.setAttribute('aria-label','Track playlist');
+  WINAMP_TRACKS.forEach((t,i)=>{
+    const s=document.createElement('div');
+    s.className='winamp-song'+(i===winampIdx?' playing':'');
+    s.textContent=`${String(i+1).padStart(2,'0')}. ${t.title}  [${t.len}]`;
+    s.setAttribute('role','option');
+    s.setAttribute('aria-selected',i===winampIdx?'true':'false');
+    s.tabIndex=0;
+    s.onclick=()=>{winampIdx=i;winampUpdate();};
+    s.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();winampIdx=i;winampUpdate();}};
+    pl.appendChild(s);
+  });
   winampUpdate();
   if(winampEqInt)clearInterval(winampEqInt);
   winampEqInt=setInterval(()=>{if(!winampPlaying)return;document.querySelectorAll('#winamp-eq .winamp-bar').forEach(b=>{b.style.height=(4+Math.random()*36)+'px';});},110);
@@ -870,11 +938,11 @@ function initWinamp(){
 function winampUpdate(){
   document.getElementById('winamp-track').textContent=`♪ ${WINAMP_TRACKS[winampIdx].title} ♪`;
   document.getElementById('winamp-meta').textContent=`00:00 / ${WINAMP_TRACKS[winampIdx].len}  ·  128 kbps  ·  44 kHz  ·  stereo`;
-  document.querySelectorAll('.winamp-song').forEach((s,i)=>s.classList.toggle('playing',i===winampIdx));
+  document.querySelectorAll('.winamp-song').forEach((s,i)=>{s.classList.toggle('playing',i===winampIdx);s.setAttribute('aria-selected',i===winampIdx?'true':'false');});
 }
 function winampNext(){winampIdx=(winampIdx+1)%WINAMP_TRACKS.length;winampUpdate();}
 function winampPrev(){winampIdx=(winampIdx-1+WINAMP_TRACKS.length)%WINAMP_TRACKS.length;winampUpdate();}
-function winampToggle(){winampPlaying=!winampPlaying;document.getElementById('winamp-play').textContent=winampPlaying?'▶':'❚❚';}
+function winampToggle(){winampPlaying=!winampPlaying;const b=document.getElementById('winamp-play');b.textContent=winampPlaying?'▶':'❚❚';b.setAttribute('aria-label',winampPlaying?'Pause':'Play');}
 function winampShuffle(){winampIdx=Math.floor(Math.random()*WINAMP_TRACKS.length);winampUpdate();}
 
 // ============ SBSHARE ============
