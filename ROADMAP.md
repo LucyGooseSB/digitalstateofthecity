@@ -141,6 +141,8 @@ Goal: bring the existing interactive report to WCAG 2.1 AA without abandoning th
 
 Full findings are in `ACCESSIBILITY_AUDIT.md`. This section is the **build plan**.
 
+**Status: Phases 1–5 ✅ complete. Phase 6 (verification with axe + screen reader) still pending.**
+
 **Estimated effort:** 4–8 hours focused work + screen-reader testing.
 
 ### Phase 1 — Zero visual impact (quick wins, ~1–2 hr)

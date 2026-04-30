@@ -10,6 +10,24 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .icon,.win-titlebar,.tb-btn,.win-btn{user-select:none;}
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
+/* SKIP LINK — visible on focus */
+.skip-link{position:absolute;top:-40px;left:8px;background:#002868;color:#F5C82C;padding:8px 16px;font-weight:bold;z-index:100000;border:2px solid #F5C82C;text-decoration:none;font-size:12px;}
+.skip-link:focus{top:8px;outline:none;}
+
+/* FOCUS INDICATORS — XP-style dotted outline */
+:focus{outline:none;}
+:focus-visible{outline:2px dotted #F5C82C;outline-offset:2px;}
+.icon:focus-visible{outline:2px dotted #fff;outline-offset:1px;background:rgba(0,40,104,.4);}
+.win-btn:focus-visible{outline:2px dotted #F5C82C;outline-offset:-1px;}
+.mines-cell:focus-visible{outline:2px dotted #002868;outline-offset:-2px;z-index:1;position:relative;}
+.sm-item:focus-visible{outline:none;background:rgba(255,255,255,.25);}
+.win-titlebar:focus-visible{outline:2px dotted #F5C82C;outline-offset:-2px;}
+.winamp-song:focus-visible{outline:2px dotted #F5C82C;outline-offset:-2px;}
+.paint-tool:focus-visible,.paint-color:focus-visible{outline:2px dotted #002868;outline-offset:1px;z-index:1;position:relative;}
+.share-search:focus-visible{outline:2px solid #F5C82C;outline-offset:0;}
+.tb-btn:focus-visible{outline:2px dotted #F5C82C;outline-offset:-2px;}
+#start-btn:focus-visible{outline:2px dotted #F5C82C;outline-offset:-3px;}
+
 /* DESKTOP */
 #desktop{flex:1;position:relative;overflow:hidden;background:#3a6ea5 url('bliss.png') center/cover no-repeat;}
 #desktop-bg{position:absolute;inset:0;pointer-events:none;}
@@ -74,7 +92,8 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .ppt-col.after .ppt-col-hdr{color:#002868;}
 .ppt-tag{display:inline-block;background:#002868;color:#F5C82C;font-size:9px;font-weight:bold;padding:1px 6px;margin-bottom:6px;}
 .progress-xp{border:2px inset #888;height:16px;background:#fff;margin:6px 0;}
-.progress-xp-fill{height:100%;background:linear-gradient(180deg,#6EA8E8,#2060CC);transition:width 1.5s ease;}
+.progress-xp-fill{height:100%;background:linear-gradient(180deg,#6EA8E8,#2060CC);}
+@media (prefers-reduced-motion: no-preference){.progress-xp-fill{transition:width 1.5s ease;}}
 .ppt-felt{font-size:9px;color:#666;font-style:italic;margin-top:6px;padding-top:4px;border-top:1px dashed #CCC;}
 
 /* TASKBAR */
@@ -91,7 +110,8 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 #clock{color:#fff;font-size:11px;text-align:right;cursor:default;}
 
 /* CLIPPY */
-#clippy{position:absolute;bottom:48px;right:16px;display:flex;flex-direction:column;align-items:flex-end;gap:4px;z-index:9999;opacity:0;transition:opacity .4s;}
+#clippy{position:absolute;bottom:48px;right:16px;display:flex;flex-direction:column;align-items:flex-end;gap:4px;z-index:9999;opacity:0;}
+@media (prefers-reduced-motion: no-preference){#clippy{transition:opacity .4s;}}
 #clippy.visible{opacity:1;}
 .clippy-bubble{background:#FFFFC8;border:1px solid #C8A000;border-radius:8px 8px 0 8px;padding:8px 10px;max-width:200px;font-size:11px;line-height:1.5;color:#333;box-shadow:2px 2px 4px rgba(0,0,0,.2);}
 .clippy-bubble b{color:#002868;}
@@ -99,7 +119,7 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .clippy-btn{font-size:9px;color:#0000CC;cursor:pointer;text-decoration:underline;background:none;border:none;padding:0;font-family:Tahoma,Arial,sans-serif;}
 .clippy-btn:hover{color:#CC0000;}
 .clippy-mascot{width:52px;height:52px;background:#002868;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;box-shadow:2px 2px 6px rgba(0,0,0,.4);border:2px solid #F5C82C;}
-.clippy-wiggle{animation:wiggle .4s ease-in-out;}
+@media (prefers-reduced-motion: no-preference){.clippy-wiggle{animation:wiggle .4s ease-in-out;}}
 @keyframes wiggle{0%,100%{transform:rotate(0deg);}25%{transform:rotate(-10deg);}75%{transform:rotate(10deg);}}
 /* START MENU */
 #start-menu{display:none;position:absolute;bottom:32px;left:0;width:220px;background:linear-gradient(180deg,#1A58CC,#0A3A9A);border:1px solid #0a2060;box-shadow:3px -3px 8px rgba(0,0,0,.5);z-index:9999;}
@@ -114,10 +134,6 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .sm-footer{background:rgba(0,0,0,.2);padding:6px 14px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid rgba(255,255,255,.1);}
 .sm-footer-btn{background:linear-gradient(180deg,#5080D0,#2050A8);border:1px solid #8AAAE0;color:#fff;font-size:10px;padding:2px 10px;cursor:pointer;border-radius:2px;}
 .sm-footer-btn:hover{filter:brightness(1.2);}
-
-/* BLINK */
-.blink{animation:blink 1s step-end infinite;}
-@keyframes blink{50%{opacity:0;}}
 
 /* PAINT */
 .paint-toolbar{background:#ECE9D8;border-bottom:1px solid #AAA;padding:4px;display:flex;gap:4px;flex-shrink:0;}
@@ -154,11 +170,13 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .winamp-body{background:linear-gradient(180deg,#2a2a3e 0%,#0f0f1f 100%);padding:10px;height:100%;color:#00FF41;font-family:'Courier New',monospace;display:flex;flex-direction:column;gap:8px;}
 .winamp-display{background:#000;border:1px inset #333;padding:8px;}
 .winamp-track{font-size:12px;color:#F5C82C;font-weight:bold;white-space:nowrap;overflow:hidden;}
-.winamp-track-scroll{display:inline-block;animation:marquee 14s linear infinite;padding-right:60px;}
+.winamp-track-scroll{display:inline-block;padding-right:60px;}
+@media (prefers-reduced-motion: no-preference){.winamp-track-scroll{animation:marquee 14s linear infinite;}}
 @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
 .winamp-meta{font-size:10px;color:#00FF41;margin-top:4px;}
 .winamp-eq{display:flex;align-items:flex-end;gap:2px;height:48px;background:#000;padding:4px;border:1px inset #333;}
-.winamp-bar{flex:1;background:linear-gradient(180deg,#F00 0%,#FF0 40%,#0F0 100%);transition:height .15s ease;min-height:2px;}
+.winamp-bar{flex:1;background:linear-gradient(180deg,#F00 0%,#FF0 40%,#0F0 100%);min-height:2px;}
+@media (prefers-reduced-motion: no-preference){.winamp-bar{transition:height .15s ease;}}
 .winamp-controls{display:flex;gap:4px;}
 .winamp-btn{flex:1;background:linear-gradient(180deg,#555,#222);border:1px outset #888;color:#F5C82C;padding:4px;cursor:pointer;font-size:12px;}
 .winamp-btn:active{border:1px inset #888;}
@@ -180,7 +198,8 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .share-table td{border-bottom:1px solid #EEE;padding:3px 6px;}
 .share-table tr:hover td{background:#E8ECF8;}
 .share-progress{width:80px;height:10px;border:1px inset #999;background:#fff;position:relative;display:inline-block;vertical-align:middle;}
-.share-progress-fill{height:100%;background:linear-gradient(180deg,#6EA8E8,#2060CC);transition:width .5s ease;}
+.share-progress-fill{height:100%;background:linear-gradient(180deg,#6EA8E8,#2060CC);}
+@media (prefers-reduced-motion: no-preference){.share-progress-fill{transition:width .5s ease;}}
 .share-speed{color:#008000;font-weight:bold;font-family:'Courier New',monospace;font-size:10px;}
 
 /* SCREENSAVER */
@@ -189,8 +208,30 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 .ss-text{position:absolute;font-family:'Merriweather',serif;font-weight:900;font-size:32px;letter-spacing:.05em;white-space:nowrap;padding:16px 24px;border:2px solid currentColor;border-radius:4px;}
 
 /* BLINK */
-.blink{animation:blink 1s step-end infinite;}
+.blink{animation:none;}
+@media (prefers-reduced-motion: no-preference){.blink{animation:blink 1s step-end infinite;}}
 @keyframes blink{50%{opacity:0;}}
+
+/* RESPONSIVE — focused-window mode below 700px */
+@media (max-width:700px){
+  body{overflow:auto;height:auto;min-height:100vh;}
+  #desktop{min-height:calc(100vh - 32px);overflow:visible;background-attachment:fixed;}
+  #desktop-icons{position:relative;display:flex;flex-direction:column;padding:12px 12px 16px;gap:6px;align-items:stretch;}
+  .icon{position:static!important;width:auto!important;flex-direction:row!important;justify-content:flex-start!important;gap:12px!important;padding:10px 12px!important;background:rgba(0,40,104,.7);border:1px solid rgba(255,255,255,.2);border-radius:4px;}
+  .icon:hover,.icon:focus-visible{background:rgba(0,40,104,.9);}
+  .icon-img{font-size:24px!important;}
+  .icon-label{background:transparent!important;padding:0!important;font-size:13px!important;text-align:left!important;}
+  .win{position:fixed!important;left:0!important;top:0!important;right:0;bottom:32px;width:auto!important;height:auto!important;min-width:0;max-width:100vw;border-radius:0!important;z-index:50!important;}
+  .win-titlebar{cursor:default;}
+  #clippy{display:none;}
+  #screensaver{display:none!important;}
+  #start-menu{position:fixed;bottom:32px;left:0;right:0;width:auto;border-bottom:none;}
+  .winamp-body{padding:14px;}
+  .paint-canvas-wrap{padding:8px;overflow:auto;}
+  #tb-btns{flex-wrap:nowrap;overflow-x:auto;flex:1;}
+  .tb-btn{max-width:none;flex-shrink:0;}
+  .skip-link:focus{position:fixed;top:8px;}
+}
 
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:16px;height:16px;}
@@ -201,9 +242,14 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
 </head>
 <body>
 
-<div id="desktop">
+<a class="skip-link" href="#desktop-icons">Skip to desktop icons</a>
+<h1 class="sr-only">City of South Bend — Digital Services — Q2 2026 Report</h1>
+<p class="sr-only">This is a stylized Windows XP–themed interactive report from the City of South Bend Digital Services team. All windows and apps are keyboard accessible. Tab through desktop icons; press Enter or Space to open a window. Inside a window, Tab moves through controls; Escape closes the topmost window. When a window's title bar is focused, arrow keys move the window.</p>
+
+<main id="desktop" aria-label="Report desktop">
 
   <!-- DESKTOP ICONS -->
+  <div id="desktop-icons" tabindex="-1" role="region" aria-label="Desktop icons">
   <div class="icon" style="left:16px;top:16px;" role="button" tabindex="0" onclick="openWin('win-welcome')" onkeydown="iconKey(event,'win-welcome')" aria-label="Open Welcome.txt">
     <div class="icon-img" aria-hidden="true">📄</div>
     <div class="icon-label">Welcome.txt</div>
@@ -242,12 +288,13 @@ body{font-family:Tahoma,Arial,sans-serif;font-size:11px;overflow:hidden;height:1
     <div class="icon-img" aria-hidden="true">🌐</div>
     <div class="icon-label">SBShare</div>
   </div>
+  </div><!-- /desktop-icons -->
 
   <!-- WINDOW: WELCOME -->
   <div class="win focused" id="win-welcome" role="dialog" aria-labelledby="win-welcome-title" style="left:100px;top:40px;width:480px;height:300px;z-index:10;">
-    <div class="win-titlebar" onmousedown="startDrag(event,'win-welcome')">
+    <div class="win-titlebar" tabindex="0" role="button" aria-label="Window title bar — arrow keys to move, Escape to close" onkeydown="titlebarKey(event)" onmousedown="startDrag(event,'win-welcome')">
       <span class="win-icon" aria-hidden="true">📄</span>
-      <span class="win-title" id="win-welcome-title">Welcome.txt - City Notepad</span>
+      <h2 class="win-title" id="win-welcome-title">Welcome.txt - City Notepad</h2>
       <div class="win-btns">
         <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-welcome')">−</button>
         <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
@@ -289,9 +336,9 @@ NOTE: This document last saved 6/30/2026 11:58 PM
 
   <!-- WINDOW: SERVICES -->
   <div class="win" id="win-services" role="dialog" aria-labelledby="win-services-title" style="left:160px;top:80px;width:600px;height:380px;z-index:8;display:none;">
-    <div class="win-titlebar" onmousedown="startDrag(event,'win-services')">
+    <div class="win-titlebar" tabindex="0" role="button" aria-label="Window title bar — arrow keys to move, Escape to close" onkeydown="titlebarKey(event)" onmousedown="startDrag(event,'win-services')">
       <span class="win-icon" aria-hidden="true">📊</span>
-      <span class="win-title" id="win-services-title">Services Overview.doc - City Docs</span>
+      <h2 class="win-title" id="win-services-title">Services Overview.doc - City Docs</h2>
       <div class="win-btns">
         <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-services')">−</button>
         <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
@@ -309,10 +356,11 @@ NOTE: This document last saved 6/30/2026 11:58 PM
     </div>
     <div class="win-body">
       <div style="padding:16px;background:#fff;">
-        <div style="font-family:'Merriweather',serif;font-size:18px;font-weight:900;color:#002868;margin-bottom:4px;">Digital Services — Seven Services, One Team</div>
-        <div style="font-size:10px;color:#888;margin-bottom:12px;border-bottom:1px solid #DDD;padding-bottom:8px;">City of South Bend · Innovation & Technology · Q2 2026</div>
+        <h3 style="font-family:'Merriweather',serif;font-size:18px;font-weight:900;color:#002868;margin-bottom:4px;">Digital Services — Seven Services, One Team</h3>
+        <div style="font-size:10px;color:#666;margin-bottom:12px;border-bottom:1px solid #DDD;padding-bottom:8px;">City of South Bend · Innovation & Technology · Q2 2026</div>
         <table class="xls-table">
-          <tr><th>Area</th><th>Service</th><th>Our Promise</th></tr>
+          <caption class="sr-only">Seven services offered by Digital Services, grouped by area</caption>
+          <tr><th scope="col">Area</th><th scope="col">Service</th><th scope="col">Our Promise</th></tr>
           <tr><td style="background:#E8ECF8;"><span style="background:#002868;color:#F5C82C;font-size:9px;font-weight:bold;padding:1px 4px;">RESIDENT</span></td><td><b>City Digital Experience & Content Mgmt</b></td><td style="color:#555;font-style:italic;">Residents find accurate, accessible info and complete tasks through connected city digital channels.</td></tr>
           <tr><td style="background:#E8ECF8;"><span style="background:#002868;color:#F5C82C;font-size:9px;font-weight:bold;padding:1px 4px;">RESIDENT</span></td><td><b>Digital Forms & Service Delivery</b></td><td style="color:#555;font-style:italic;">Manual and paper-based processes become accessible digital forms with reliable routing.</td></tr>
           <tr><td style="background:#E8F4EC;"><span style="background:#1A5E30;color:#9FE;font-size:9px;font-weight:bold;padding:1px 4px;">FOUNDATIONS</span></td><td><b>Digital Principles & Standards</b></td><td style="color:#555;font-style:italic;">Coaching, governance, and tooling to help the whole team build better, consistently.</td></tr>
@@ -321,16 +369,16 @@ NOTE: This document last saved 6/30/2026 11:58 PM
           <tr><td style="background:#FFF4E8;"><span style="background:#7A3800;color:#FFC;font-size:9px;font-weight:bold;padding:1px 4px;">IMPROVEMENT</span></td><td><b>Process Improvement & Solution Design</b></td><td style="color:#555;font-style:italic;">We listen, map how things work today, find the friction, and design solutions that serve you.</td></tr>
           <tr><td style="background:#FFF4E8;"><span style="background:#7A3800;color:#FFC;font-size:9px;font-weight:bold;padding:1px 4px;">IMPROVEMENT</span></td><td><b>Custom Application Development</b></td><td style="color:#555;font-style:italic;">When the right solution doesn't exist off the shelf, we build it.</td></tr>
         </table>
-        <div style="font-size:9px;color:#888;margin-top:12px;border-top:1px dashed #CCC;padding-top:6px;">Page 1 of 1 &nbsp;|&nbsp; Words: 127 &nbsp;|&nbsp; 🔤 English (United States)</div>
+        <div style="font-size:9px;color:#666;margin-top:12px;border-top:1px dashed #CCC;padding-top:6px;" aria-hidden="true">Page 1 of 1 &nbsp;|&nbsp; Words: 127 &nbsp;|&nbsp; 🔤 English (United States)</div>
       </div>
     </div>
   </div>
 
   <!-- WINDOW: STATS -->
   <div class="win" id="win-stats" role="dialog" aria-labelledby="win-stats-title" style="left:220px;top:40px;width:560px;height:360px;z-index:9;display:none;">
-    <div class="win-titlebar" onmousedown="startDrag(event,'win-stats')">
+    <div class="win-titlebar" tabindex="0" role="button" aria-label="Window title bar — arrow keys to move, Escape to close" onkeydown="titlebarKey(event)" onmousedown="startDrag(event,'win-stats')">
       <span class="win-icon" aria-hidden="true">📈</span>
-      <span class="win-title" id="win-stats-title">City Stats Q2 2026.xls - City Sheets</span>
+      <h2 class="win-title" id="win-stats-title">City Stats Q2 2026.xls - City Sheets</h2>
       <div class="win-btns">
         <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-stats')">−</button>
         <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
@@ -345,28 +393,29 @@ NOTE: This document last saved 6/30/2026 11:58 PM
     </div>
     <div class="win-body xls-body">
       <table class="xls-table">
-        <tr><th class="row-hdr"></th><th style="width:180px;">A</th><th style="width:120px;">B</th><th>C</th></tr>
-        <tr><td class="row-num">1</td><td style="background:#D0D8F0;font-weight:bold;color:#002868;font-size:12px;" colspan="3">📊 Digital City by the Numbers — Q2 2026</td></tr>
-        <tr><td class="row-num">2</td><td style="background:#E8ECF8;font-weight:bold;">Metric</td><td style="background:#E8ECF8;font-weight:bold;">Value</td><td style="background:#E8ECF8;font-weight:bold;">Notes</td></tr>
-        <tr><td class="row-num">3</td><td>Monthly website visitors</td><td class="num" id="s1">0</td><td style="color:#666;">southbendindiana.gov</td></tr>
-        <tr><td class="row-num">4</td><td>Form submissions / quarter</td><td class="num" id="s2">0</td><td style="color:#666;">No paper. No manual handoff.</td></tr>
-        <tr><td class="row-num">5</td><td>ETL pipelines in production</td><td class="gold" id="s3">0+</td><td style="color:#666;">Running 24/7 across city systems</td></tr>
-        <tr><td class="row-num">6</td><td>Domains managed</td><td class="gold" id="s4">0+</td><td style="color:#666;">Maintained and monitored</td></tr>
-        <tr><td class="row-num">7</td><td>Systems under active support</td><td class="num" id="s5">0</td><td style="color:#666;">GIS, permitting, ERP + more</td></tr>
-        <tr><td class="row-num">8</td><td>Integration uptime</td><td class="gold" id="s6">0%</td><td style="color:#666;">Baseline established Q1 2026</td></tr>
-        <tr><td class="row-num">9</td><td>ADA Title II compliance</td><td class="dim">—%</td><td style="color:#888;font-style:italic;">Full audit in progress</td></tr>
-        <tr><td class="row-num">10</td><td>Teams enabled (shared standards)</td><td class="dim">—</td><td style="color:#888;font-style:italic;">Data collection in progress</td></tr>
-        <tr><td class="row-num">11</td><td></td><td></td><td></td></tr>
-        <tr><td class="row-num">12</td><td style="color:#888;font-style:italic;font-size:10px;">SUM of confirmed metrics →</td><td class="num" style="font-size:11px;" id="s-sum">0</td><td style="color:#888;font-size:10px;">etl + domains + systems + uptime</td></tr>
+        <caption class="sr-only">Digital City by the Numbers — Q2 2026 metrics</caption>
+        <tr aria-hidden="true"><th class="row-hdr"></th><th style="width:180px;">A</th><th style="width:120px;">B</th><th>C</th></tr>
+        <tr><td class="row-num" aria-hidden="true">1</td><td style="background:#D0D8F0;font-weight:bold;color:#002868;font-size:12px;" colspan="3">📊 Digital City by the Numbers — Q2 2026</td></tr>
+        <tr><td class="row-num" aria-hidden="true">2</td><th scope="col" style="background:#E8ECF8;font-weight:bold;text-align:left;">Metric</th><th scope="col" style="background:#E8ECF8;font-weight:bold;text-align:left;">Value</th><th scope="col" style="background:#E8ECF8;font-weight:bold;text-align:left;">Notes</th></tr>
+        <tr><td class="row-num" aria-hidden="true">3</td><th scope="row" style="font-weight:normal;text-align:left;">Monthly website visitors</th><td class="num" id="s1">0</td><td style="color:#555;">southbendindiana.gov</td></tr>
+        <tr><td class="row-num" aria-hidden="true">4</td><th scope="row" style="font-weight:normal;text-align:left;">Form submissions / quarter</th><td class="num" id="s2">0</td><td style="color:#555;">No paper. No manual handoff.</td></tr>
+        <tr><td class="row-num" aria-hidden="true">5</td><th scope="row" style="font-weight:normal;text-align:left;">ETL pipelines in production</th><td class="gold" id="s3">0+</td><td style="color:#555;">Running 24/7 across city systems</td></tr>
+        <tr><td class="row-num" aria-hidden="true">6</td><th scope="row" style="font-weight:normal;text-align:left;">Domains managed</th><td class="gold" id="s4">0+</td><td style="color:#555;">Maintained and monitored</td></tr>
+        <tr><td class="row-num" aria-hidden="true">7</td><th scope="row" style="font-weight:normal;text-align:left;">Systems under active support</th><td class="num" id="s5">0</td><td style="color:#555;">GIS, permitting, ERP + more</td></tr>
+        <tr><td class="row-num" aria-hidden="true">8</td><th scope="row" style="font-weight:normal;text-align:left;">Integration uptime</th><td class="gold" id="s6">0%</td><td style="color:#555;">Baseline established Q1 2026</td></tr>
+        <tr><td class="row-num" aria-hidden="true">9</td><th scope="row" style="font-weight:normal;text-align:left;">ADA Title II compliance</th><td class="dim">—%</td><td style="color:#666;font-style:italic;">Full audit in progress</td></tr>
+        <tr><td class="row-num" aria-hidden="true">10</td><th scope="row" style="font-weight:normal;text-align:left;">Teams enabled (shared standards)</th><td class="dim">—</td><td style="color:#666;font-style:italic;">Data collection in progress</td></tr>
+        <tr aria-hidden="true"><td class="row-num">11</td><td></td><td></td><td></td></tr>
+        <tr><td class="row-num" aria-hidden="true">12</td><th scope="row" style="color:#666;font-style:italic;font-size:10px;font-weight:normal;text-align:left;">SUM of confirmed metrics →</th><td class="num" style="font-size:11px;" id="s-sum">0</td><td style="color:#666;font-size:10px;">etl + domains + systems + uptime</td></tr>
       </table>
     </div>
   </div>
 
   <!-- WINDOW: CHANGES -->
   <div class="win" id="win-changes" role="dialog" aria-labelledby="win-changes-title" style="left:140px;top:60px;width:580px;height:420px;z-index:7;display:none;">
-    <div class="win-titlebar" onmousedown="startDrag(event,'win-changes')">
+    <div class="win-titlebar" tabindex="0" role="button" aria-label="Window title bar — arrow keys to move, Escape to close" onkeydown="titlebarKey(event)" onmousedown="startDrag(event,'win-changes')">
       <span class="win-icon" aria-hidden="true">📋</span>
-      <span class="win-title" id="win-changes-title">What Changed.ppt - City Slides</span>
+      <h2 class="win-title" id="win-changes-title">What Changed.ppt - City Slides</h2>
       <div class="win-btns">
         <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-changes')">−</button>
         <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
@@ -377,7 +426,7 @@ NOTE: This document last saved 6/30/2026 11:58 PM
     <div class="win-body ppt-body">
 
       <div class="ppt-slide">
-        <div class="ppt-slide-title">Slide 1 of 3 — Resident Success Client Tracking</div>
+        <h3 class="ppt-slide-title">Slide 1 of 3 — Resident Success Client Tracking</h3>
         <span class="ppt-tag">Staff-Facing</span>
         <div class="ppt-grid">
           <div class="ppt-col before"><div class="ppt-col-hdr">◀ Before</div>A time-intensive spreadsheet that got in the way of client work — error-prone, text-heavy, and difficult to navigate unless an appointment was already on the books.</div>
@@ -387,7 +436,7 @@ NOTE: This document last saved 6/30/2026 11:58 PM
       </div>
 
       <div class="ppt-slide">
-        <div class="ppt-slide-title">Slide 2 of 3 — Building Permit Applications</div>
+        <h3 class="ppt-slide-title">Slide 2 of 3 — Building Permit Applications</h3>
         <span class="ppt-tag">Resident-Facing</span>
         <div class="ppt-grid">
           <div class="ppt-col before"><div class="ppt-col-hdr">◀ Before</div>PDF forms, often brought in person — error-prone, requiring multiple trips and back-and-forth before a permit could move forward.</div>
@@ -397,7 +446,7 @@ NOTE: This document last saved 6/30/2026 11:58 PM
       </div>
 
       <div class="ppt-slide">
-        <div class="ppt-slide-title">Slide 3 of 3 — southbendindiana.gov Accessibility</div>
+        <h3 class="ppt-slide-title">Slide 3 of 3 — southbendindiana.gov Accessibility</h3>
         <span class="ppt-tag">City-Wide · ADA Title II</span>
         <div class="ppt-grid">
           <div class="ppt-col before"><div class="ppt-col-hdr">◀ Before</div>50% compliance score. Templates never designed to meet ADA standards. Real barriers for residents using assistive technology.</div>
@@ -414,9 +463,9 @@ NOTE: This document last saved 6/30/2026 11:58 PM
 
   <!-- WINDOW: README -->
   <div class="win" id="win-readme" role="dialog" aria-labelledby="win-readme-title" style="left:180px;top:100px;width:360px;height:240px;z-index:6;display:none;">
-    <div class="win-titlebar" onmousedown="startDrag(event,'win-readme')">
+    <div class="win-titlebar" tabindex="0" role="button" aria-label="Window title bar — arrow keys to move, Escape to close" onkeydown="titlebarKey(event)" onmousedown="startDrag(event,'win-readme')">
       <span class="win-icon" aria-hidden="true">❓</span>
-      <span class="win-title" id="win-readme-title">ReadMe_First.txt - City Notepad</span>
+      <h2 class="win-title" id="win-readme-title">ReadMe_First.txt - City Notepad</h2>
       <div class="win-btns">
         <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-readme')">−</button>
         <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
@@ -451,9 +500,9 @@ The data is real.
 
   <!-- WINDOW: PAINT -->
   <div class="win" id="win-paint" role="dialog" aria-labelledby="win-paint-title" style="left:240px;top:60px;width:520px;height:400px;z-index:5;display:none;">
-    <div class="win-titlebar" onmousedown="startDrag(event,'win-paint')">
+    <div class="win-titlebar" tabindex="0" role="button" aria-label="Window title bar — arrow keys to move, Escape to close" onkeydown="titlebarKey(event)" onmousedown="startDrag(event,'win-paint')">
       <span class="win-icon" aria-hidden="true">🎨</span>
-      <span class="win-title" id="win-paint-title">untitled_citymap.bmp - Paint</span>
+      <h2 class="win-title" id="win-paint-title">untitled_citymap.bmp - Paint</h2>
       <div class="win-btns">
         <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-paint')">−</button>
         <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
@@ -477,9 +526,9 @@ The data is real.
 
   <!-- WINDOW: MINESWEEPER -->
   <div class="win" id="win-mines" role="dialog" aria-labelledby="win-mines-title" style="left:280px;top:40px;width:270px;height:340px;z-index:5;display:none;">
-    <div class="win-titlebar" onmousedown="startDrag(event,'win-mines')">
+    <div class="win-titlebar" tabindex="0" role="button" aria-label="Window title bar — arrow keys to move, Escape to close" onkeydown="titlebarKey(event)" onmousedown="startDrag(event,'win-mines')">
       <span class="win-icon" aria-hidden="true">💣</span>
-      <span class="win-title" id="win-mines-title">Minesweeper</span>
+      <h2 class="win-title" id="win-mines-title">Minesweeper</h2>
       <div class="win-btns">
         <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-mines')">−</button>
         <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
@@ -499,9 +548,9 @@ The data is real.
 
   <!-- WINDOW: WINAMP -->
   <div class="win" id="win-winamp" role="dialog" aria-labelledby="win-winamp-title" style="left:300px;top:80px;width:300px;height:360px;z-index:5;display:none;">
-    <div class="win-titlebar" onmousedown="startDrag(event,'win-winamp')">
+    <div class="win-titlebar" tabindex="0" role="button" aria-label="Window title bar — arrow keys to move, Escape to close" onkeydown="titlebarKey(event)" onmousedown="startDrag(event,'win-winamp')">
       <span class="win-icon" aria-hidden="true">🎵</span>
-      <span class="win-title" id="win-winamp-title">SBWinamp 2.95 — "It really kicks the potholes"</span>
+      <h2 class="win-title" id="win-winamp-title">SBWinamp 2.95 — "It really kicks the potholes"</h2>
       <div class="win-btns">
         <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-winamp')">−</button>
         <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
@@ -526,9 +575,9 @@ The data is real.
 
   <!-- WINDOW: SBSHARE -->
   <div class="win" id="win-share" role="dialog" aria-labelledby="win-share-title" style="left:200px;top:30px;width:580px;height:400px;z-index:5;display:none;">
-    <div class="win-titlebar" onmousedown="startDrag(event,'win-share')">
+    <div class="win-titlebar" tabindex="0" role="button" aria-label="Window title bar — arrow keys to move, Escape to close" onkeydown="titlebarKey(event)" onmousedown="startDrag(event,'win-share')">
       <span class="win-icon" aria-hidden="true">🌐</span>
-      <span class="win-title" id="win-share-title">SBShare — Municipal P2P Network</span>
+      <h2 class="win-title" id="win-share-title">SBShare — Municipal P2P Network</h2>
       <div class="win-btns">
         <button class="win-btn" aria-label="Minimize" onclick="minimizeWin('win-share')">−</button>
         <button class="win-btn" aria-label="Maximize (not available)" aria-disabled="true" tabindex="-1">□</button>
@@ -596,10 +645,10 @@ The data is real.
     </div>
   </div>
 
-</div><!-- /desktop -->
+</main><!-- /desktop -->
 
 <!-- TASKBAR -->
-<div id="taskbar">
+<nav id="taskbar" aria-label="Taskbar">
   <button id="start-btn" onclick="toggleStart()" aria-expanded="false" aria-haspopup="menu" aria-controls="start-menu">
     <div style="width:26px;height:17px;position:relative;overflow:hidden;flex-shrink:0;border-radius:1px;">
       <div style="position:absolute;top:.14%;right:58.7%;bottom:0;left:0;"><img src="https://www.figma.com/api/mcp/asset/d7c7d07f-c286-40d3-b51d-b1e4eb7106e4" style="position:absolute;inset:0;width:100%;height:100%;display:block;" alt=""></div>
@@ -618,9 +667,14 @@ The data is real.
     <span style="font-size:14px;" aria-hidden="true">🌐</span>
     <div id="clock" aria-label="Current time">10:24 AM</div>
   </div>
-</div>
+</nav>
 
 <script>
+// Reduced-motion preference (live updates if user toggles)
+const RM_QUERY=matchMedia('(prefers-reduced-motion: reduce)');
+let prefersReducedMotion=RM_QUERY.matches;
+RM_QUERY.addEventListener('change',e=>{prefersReducedMotion=e.matches;});
+
 // Window state
 const wins={};
 let topZ=10;
@@ -647,6 +701,10 @@ function addTaskbarBtn(id){
 
 function openWin(id){
   const w=wins[id];
+  // In focused-window (mobile) mode, hide any other open window
+  if(window.matchMedia('(max-width:700px)').matches){
+    Object.keys(wins).forEach(k=>{if(k!==id&&wins[k].open){const ow=wins[k];ow.el.style.display='none';ow.minimized=true;const otb=document.getElementById('tb-'+k);if(otb){otb.classList.remove('active');otb.setAttribute('aria-pressed','false');}}});
+  }
   w.el.style.display='flex';
   w.el.style.zIndex=++topZ;
   w.open=true;w.minimized=false;
@@ -699,10 +757,31 @@ function focusWin(id){
 let drag=null;
 function startDrag(e,id){
   focusWin(id);
+  if(window.matchMedia('(max-width:700px)').matches)return; // No drag in focused-window mode
   const el=document.getElementById(id);
   const rect=el.getBoundingClientRect();
   drag={id,ox:e.clientX-rect.left,oy:e.clientY-rect.top};
   e.preventDefault();
+}
+// Keyboard drag — focused titlebar + arrow keys
+function titlebarKey(e){
+  const win=e.currentTarget.closest('.win');
+  if(!win)return;
+  const id=win.id;
+  if(e.key==='Escape'){e.preventDefault();closeWin(id);return;}
+  const STEP=e.shiftKey?40:10;
+  let l=parseInt(win.style.left)||0,t=parseInt(win.style.top)||0;
+  const desk=document.getElementById('desktop').getBoundingClientRect();
+  let handled=true;
+  if(e.key==='ArrowUp')t-=STEP;
+  else if(e.key==='ArrowDown')t+=STEP;
+  else if(e.key==='ArrowLeft')l-=STEP;
+  else if(e.key==='ArrowRight')l+=STEP;
+  else handled=false;
+  if(handled){e.preventDefault();focusWin(id);
+    win.style.left=Math.max(0,Math.min(l,desk.width-60))+'px';
+    win.style.top=Math.max(0,Math.min(t,desk.height-30))+'px';
+  }
 }
 document.addEventListener('mousemove',e=>{
   if(!drag)return;
@@ -735,6 +814,12 @@ updateClock();setInterval(updateClock,10000);
 function countUp(id,target,suffix,dur){
   const el=document.getElementById(id);
   if(!el)return;
+  if(prefersReducedMotion){
+    const val=target;
+    el.textContent=(val>=1000?val.toLocaleString():val)+(suffix||'');
+    if(id==='s6'){document.getElementById('s-sum').textContent='175+';}
+    return;
+  }
   const start=performance.now();
   function step(now){
     const t=Math.min((now-start)/dur,1);
@@ -771,7 +856,7 @@ function nextClippyTip(){
   setTimeout(()=>document.getElementById('clippy-mascot').classList.remove('clippy-wiggle'),400);
 }
 function dismissClippy(){document.getElementById('clippy').style.display='none';}
-setTimeout(()=>document.getElementById('clippy').classList.add('visible'),2500);
+if(!prefersReducedMotion){setTimeout(()=>document.getElementById('clippy').classList.add('visible'),2500);}else{document.getElementById('clippy').classList.add('visible');}
 
 function iconKey(e,id){if(e.key==='Enter'||e.key===' '){e.preventDefault();openWin(id);}}
 function smKey(e,id){if(e.key==='Enter'||e.key===' '){e.preventDefault();openWin(id);closeStart();}else if(e.key==='Escape'){e.preventDefault();closeStart();document.getElementById('start-btn').focus();}}
@@ -779,7 +864,19 @@ function toggleStart(){const m=document.getElementById('start-menu');const btn=d
 function closeStart(){const m=document.getElementById('start-menu');m.classList.remove('open');document.getElementById('start-btn').setAttribute('aria-expanded','false');}
 // Close start menu on outside click or Escape
 document.addEventListener('click',e=>{const m=document.getElementById('start-menu');if(!m.classList.contains('open'))return;if(!m.contains(e.target)&&e.target.id!=='start-btn'&&!document.getElementById('start-btn').contains(e.target))closeStart();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){const m=document.getElementById('start-menu');if(m.classList.contains('open')){closeStart();document.getElementById('start-btn').focus();}}});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  const m=document.getElementById('start-menu');
+  if(m.classList.contains('open')){closeStart();document.getElementById('start-btn').focus();return;}
+  // Close topmost open window if focus is inside one (and it's not the titlebar — that handles its own Escape)
+  const ae=document.activeElement;
+  if(ae&&ae.classList&&ae.classList.contains('win-titlebar'))return;
+  const inWin=ae&&ae.closest&&ae.closest('.win');
+  if(inWin){closeWin(inWin.id);return;}
+  // Otherwise dismiss Clippy if visible
+  const cl=document.getElementById('clippy');
+  if(cl&&cl.classList.contains('visible')){dismissClippy();}
+});
 
 // ============ PAINT ============
 const PAINT_COLORS=['#000000','#808080','#800000','#808000','#008000','#008080','#000080','#800080','#808040','#004040','#0080FF','#004080','#4080FF','#400080','#FFFFFF','#C0C0C0','#FF0000','#FFFF00','#00FF00','#00FFFF','#0000FF','#FF00FF','#FFFF80','#00FF80'];
@@ -933,7 +1030,11 @@ function initWinamp(){
   });
   winampUpdate();
   if(winampEqInt)clearInterval(winampEqInt);
-  winampEqInt=setInterval(()=>{if(!winampPlaying)return;document.querySelectorAll('#winamp-eq .winamp-bar').forEach(b=>{b.style.height=(4+Math.random()*36)+'px';});},110);
+  if(!prefersReducedMotion){
+    winampEqInt=setInterval(()=>{if(!winampPlaying)return;document.querySelectorAll('#winamp-eq .winamp-bar').forEach(b=>{b.style.height=(4+Math.random()*36)+'px';});},110);
+  }else{
+    document.querySelectorAll('#winamp-eq .winamp-bar').forEach(b=>{b.style.height='20px';});
+  }
 }
 function winampUpdate(){
   document.getElementById('winamp-track').textContent=`♪ ${WINAMP_TRACKS[winampIdx].title} ♪`;
@@ -981,7 +1082,7 @@ function tickShare(){SHARE_FILES.forEach(f=>{if(f.p<100){f.p=Math.min(100,f.p+Ma
 // ============ SCREENSAVER ============
 let ssIdle=null,ssX=100,ssY=100,ssVX=2,ssVY=2,ssInt=null;
 const SS_COLORS=['#00FF41','#F5C82C','#FF00FF','#00FFFF','#FF6600','#FFFFFF'];
-function resetIdle(){clearTimeout(ssIdle);if(document.getElementById('screensaver').classList.contains('active'))stopScreensaver();ssIdle=setTimeout(startScreensaver,45000);}
+function resetIdle(){clearTimeout(ssIdle);if(document.getElementById('screensaver').classList.contains('active'))stopScreensaver();if(prefersReducedMotion)return;ssIdle=setTimeout(startScreensaver,45000);}
 function startScreensaver(){const ss=document.getElementById('screensaver');ss.classList.add('active');const t=document.getElementById('ss-text');ssX=Math.random()*(window.innerWidth-340);ssY=Math.random()*(window.innerHeight-80);t.style.color=SS_COLORS[Math.floor(Math.random()*SS_COLORS.length)];ssInt=setInterval(()=>{ssX+=ssVX;ssY+=ssVY;const w=t.offsetWidth,h=t.offsetHeight;let bounced=false;if(ssX<=0||ssX>=window.innerWidth-w){ssVX*=-1;bounced=true;}if(ssY<=0||ssY>=window.innerHeight-h){ssVY*=-1;bounced=true;}if(bounced)t.style.color=SS_COLORS[Math.floor(Math.random()*SS_COLORS.length)];t.style.left=ssX+'px';t.style.top=ssY+'px';},16);}
 function stopScreensaver(){document.getElementById('screensaver').classList.remove('active');clearInterval(ssInt);}
 ['mousemove','keydown','mousedown','touchstart'].forEach(ev=>document.addEventListener(ev,resetIdle));

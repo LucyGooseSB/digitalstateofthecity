@@ -3,13 +3,45 @@
 **File audited:** `south_bend_interactive_report.html`
 **Standard:** WCAG 2.1 Level AA
 **Auditor:** Automated heuristic review (not a substitute for assistive-tech and user testing)
-**Date:** 2026-04-16
+**Original audit date:** 2026-04-16
+**Remediation pass:** 2026-04-30
+
+---
+
+## 🟢 Remediation status (2026-04-30)
+
+The findings below were the original audit. **Phases 1–5 of the Option A build plan in `ROADMAP.md` have been implemented.** A summary of what shipped:
+
+- **Phase 1 (zero-visual-impact wins):** Single-click + Enter on icons via `role=button`; all 27 window control buttons converted to `<button>` with aria-labels; `role=dialog` + `aria-labelledby` on every window; ARIA roles on Start menu; Winamp/Paint/SBShare controls labeled; `role=grid`/`gridcell` + roving tabindex on Minesweeper with arrow + Enter + F keyboard nav; taskbar buttons converted; decorative menubars/toolbars/icons aria-hidden; SBShare search labeled; aria-live on dynamic announcements; Clippy mascot is now a `<button>`; contrast fixes (#AAA→#767676, #888→#666, #fff opacity .6→.85); icon labels gain dark plate; `user-select:none` removed from body; alt="" on decorative imgs; focus management on open/close.
+- **Phase 2 (era-authentic keyboard):** XP-style dotted-yellow `:focus-visible` indicators per element type; skip link to desktop icons; keyboard window drag (focused titlebar + arrow keys, Shift for fast); Escape closes top window / Clippy / Start menu; outside-click closes Start.
+- **Phase 3 (reduced motion):** `@media (prefers-reduced-motion: no-preference)` guards on every CSS animation (Clippy wiggle, Winamp EQ + marquee, progress bars, blink); JS-side: counter animations resolve immediately, EQ static, screensaver does not auto-fire, Clippy appears without fade.
+- **Phase 4 (responsive switchover):** Below 700px viewport, focused-window mode kicks in: icons stack vertically as dark cards; opening a window covers the viewport (one at a time); taskbar at bottom; `overflow:hidden` released so zoom and scroll work; drag disabled on small screens; screensaver disabled on mobile.
+- **Phase 5 (semantic structure):** Hidden `<h1>` page title; `<main>` desktop landmark; `<nav>` taskbar landmark; `<h2>` window titles (replacing `<span>`s); `<h3>` slide titles and section headings; tables now have `<caption>`, `<th scope="col">` for column headers and `<th scope="row">` for metric labels; Excel-decoration row-numbers and "A B C" letters marked `aria-hidden`.
+
+**Phase 6 (verification) is still required.** This audit has NOT been re-run with axe-core / Lighthouse / screen-reader testing — the remediation was code-level. Verification recommended:
+
+```bash
+# Lighthouse (Chrome DevTools or CLI)
+npx lighthouse https://lucygoosesb.github.io/digitalstateofthecity/ --only-categories=accessibility --view
+
+# axe-core (browser extension or CLI)
+# Install the "axe DevTools" Chrome extension; open the page; run scan.
+
+# Manual checks:
+# - Tab through the entire page with keyboard only — confirm nothing is unreachable
+# - Open NVDA (Windows) or VoiceOver (Mac) — listen to the experience
+# - Toggle "Reduce motion" in OS settings — confirm Clippy/EQ/screensaver behave
+# - Resize to 320 px width — confirm focused-window mode works
+# - Zoom to 200% and 400% — confirm content reflows and remains usable
+```
+
+**The original audit findings (below) describe the pre-remediation state for historical reference.**
 
 ---
 
 ## Executive summary
 
-**Current compliance status: ❌ Does not meet WCAG 2.1 AA.**
+**Original compliance status (pre-remediation): ❌ Does not meet WCAG 2.1 AA.**
 
 The report is a stylized simulation of a Windows XP desktop. That framing is charming and the joke lands, but it is **fundamentally in tension with accessibility norms**: icons require double-click, windows are positioned absolutely with draggable pointer gestures, content is inside canvases and custom-drawn grids, and the whole document uses divs instead of semantic HTML.
 
